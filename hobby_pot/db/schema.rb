@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_05_133229) do
+ActiveRecord::Schema.define(version: 2020_11_05_144032) do
+
+  create_table "circles", force: :cascade do |t|
+    t.integer "leader_id", null: false
+    t.string "circle_title", null: false
+    t.string "image_id", null: false
+    t.text "circle_about", null: false
+    t.datetime "date_and_time", null: false
+    t.text "schedule", null: false
+    t.text "prepare", null: false
+    t.string "join_cost", null: false
+    t.string "number_people", null: false
+    t.boolean "circle_status", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "leaders", force: :cascade do |t|
     t.string "email", default: "", null: false
