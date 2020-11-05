@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-テーブル名をleaderに変更済み
+# テーブル名をleaderに変更済み
 class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
   def change
     create_table :admins do |t|
