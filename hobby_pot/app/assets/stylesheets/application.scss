@@ -16,6 +16,20 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+body{
+  background-color: #fffddb;
+}
+// application.html.erb
+#back{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+.btn-up{
+  width: 35px;
+  height: 35px;
+}
+
 // top
 .top{
   background: image-url('spice.jpeg');
@@ -45,9 +59,6 @@
   font-size: 40px;
 }
 // about
-#about{
-  background-color: #fffddb;
-}
 .about-section{
   padding-top: 90px;
   padding-bottom: 40px;
@@ -56,10 +67,10 @@
   font-size: 40px;
   text-align: center;
 }
+// about,lineup共通下線
 .top-border{
   position: relative;
   padding: 0.3em;
-
 }
 .top-border:after {
   content: '';
@@ -70,6 +81,7 @@
   height: 7px;
   background: repeating-linear-gradient(-45deg, #ff8503, #ff8503 2px, white 2px, white 4px);
 }
+// #aboutのスライド
 #slide-about{
   height: 650px;
   display: flex;
@@ -81,5 +93,4 @@
   height: 500px;
   width: 500px;
 }
-
-
+// circle
