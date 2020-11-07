@@ -1,0 +1,9 @@
+
+<% @circles.each do |c| %>
+  <%= attachment_image_tag c, :image, fallback: "no_image.jpg", class: "img-thumbnail", size: "200x200" %>
+  <%= c.circle_title %>
+  <%= c.date_and_time %>
+  <%= c.join_cost %>
+  <%= c.number_people %>
+  <%= c.circle_status %>
+<% end %>

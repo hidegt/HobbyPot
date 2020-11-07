@@ -7,9 +7,43 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/404e462280.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul class="nav justify-content-end">
+          <% if user_signed_in? %>
+            <li class="nav-item">ようこそ<br><%= current_user.name %>さん</li>
+            <li class="nav-item"><a class="nav-link" href="#">マイページ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">お気に入り</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">参加履歴</a></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <% elsif leader_signed_in? %>
+            <li class="nav-item">ようこそ<br><%= current_leader.circle_name %><br><%= current_leader.name %>さん</li>
+            <li class="nav-item"><a class="nav-link" href="#">マイページ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">サークル一覧</a></li>
+            <li class="nav-item"><%= link_to "イベント作成", new_leaders_circle_path, class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_leader_session_path, method: :delete %></li>
+          <% else %>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#lineup">Line Up</a></li>
+            <li><%= link_to "サークルに参加する", new_user_registration_path, class:"nav-link" %></li>
+            <li><%= link_to "サークルを作る", new_leader_registration_path, class:"nav-link" %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
+    <span id="back">
+      <a href="#">
+        <%= image_tag "btn.png", class:"btn-up" %>
+      </a>
+    </span>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </body>
 </html>
