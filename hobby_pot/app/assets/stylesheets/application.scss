@@ -15,11 +15,45 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+// ===全体===
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body{
   background-color: #fffddb;
 }
 // application.html.erb
+header{
+  background-color: #fc7600;
+  height: 60px;
+  line-height: 50px;
+}
+// ヘッダー部分のボーダーを斜めにする
+.app-li{
+  -webkit-transform: skewX(160deg);
+  transform: skewX(160deg);
+  border-right: 2px solid #fff;
+}
+.app-li:last-child{
+  border-right: none;
+}
+.app-li .app-a{
+  transform: skewX(-160deg); //テキストの斜めを戻す
+}
+.app-a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}
+li{
+  color: #fff;
+}
+.wc{
+  padding: 0;
+}
 #back{
   position: fixed;
   right: 20px;
@@ -29,7 +63,7 @@ body{
   width: 35px;
   height: 35px;
 }
-
+// ===topページ===
 // top
 .top{
   background: image-url('spice.jpeg');
@@ -87,10 +121,77 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 90px;
 }
 .about1{
   background: image-url('spice.jpeg');
   height: 500px;
   width: 500px;
 }
-// circle
+// lineup
+#lineup{
+  background-color: #fff;
+}
+// ===circle===
+
+// ===ユーザーとリーダーのログイン画面===
+// login
+.login_form{
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  padding-top: 40px;
+  width: 500px;
+  margin: 50px auto;
+  box-shadow: 20px 20px 0px rgba(0,0,0,.1);
+}
+.login_title{
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #292828;
+  margin-bottom: 30px;
+}
+.login_p{
+  text-align: center;
+  font-weight: 200;
+  color: #a8a8a8;
+}
+.form_font{
+  width: 100%;
+  background: #f5f5f5;
+  border: 0;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+  font-family: FontAwesome;
+}
+.login_btn{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  border-radius: 6px;
+  border: 0;
+  background: #f26964;
+  font-size: 1.2em;
+  color: #fff;
+  text-shadow: 1px 1px 0px rgba(0,0,0,.1);
+  box-shadow: 0px 5px 0px #c1524e;
+}
+.login_btn:active {
+  top: 3px;
+  box-shadow: none;
+}
+.signup_btn{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  border-radius: 6px;
+  border: 0;
+  background: #F54F10;
+  font-size: 1.2em;
+  color: #fff;
+  text-shadow: 1px 1px 0px rgba(0,0,0,.1);
+  box-shadow: 0px 5px 0px #D45E0B;
+}
