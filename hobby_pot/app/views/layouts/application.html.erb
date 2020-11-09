@@ -18,21 +18,21 @@
         <ul class="nav justify-content-end">
           <% if user_signed_in? %>
             <li class="nav-item">ようこそ<br><%= current_user.name %>さん</li>
-            <li class="nav-item"><a class="nav-link" href="#">マイページ</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">お気に入り</a></li>
-            <li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">参加履歴</a></li>
-            <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <li class="nav-item"><a class="app-a nav-link app-a" href="#">マイページ</a></li>
+            <li class="nav-item"><a class="nav-link app-a" href="#">お気に入り</a></li>
+            <li class="nav-item"><a class="nav-link  app-a" href="#" tabindex="-1" aria-disabled="true">参加履歴</a></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link app-a" %></li>
           <% elsif leader_signed_in? %>
             <li class="nav-item">ようこそ<br><%= current_leader.circle_name %><br><%= current_leader.name %>さん</li>
-            <li class="nav-item"><a class="nav-link" href="#">マイページ</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">サークル一覧</a></li>
-            <li class="nav-item"><%= link_to "イベント作成", new_leaders_circle_path, class:"nav-link" %></li>
-            <li class="nav-item"><%= link_to "ログアウト", destroy_leader_session_path, method: :delete %></li>
+            <li class="nav-item"><a class="nav-link app-a" href="#">マイページ</a></li>
+            <li class="nav-item"><a class="nav-link app-a" href="#">サークル一覧</a></li>
+            <li class="nav-item"><%= link_to "イベント作成", new_leaders_circle_path, class:"nav-link app-a" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_leader_session_path, method: :delete, class:"nav-link app-a" %></li>
           <% else %>
-            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="#lineup">Line Up</a></li>
-            <li><%= link_to "サークルに参加する", new_user_registration_path, class:"nav-link" %></li>
-            <li><%= link_to "サークルを作る", new_leader_registration_path, class:"nav-link" %></li>
+            <li class="nav-item app-li"><%= link_to 'About', root_path(anchor: 'about'), class: 'nav-link app-a' %></li>
+            <li class="nav-item app-li"><%= link_to 'Line Up', root_path(anchor: 'lineup'), class: 'nav-link app-a' %></li>
+            <li class="nav-item app-li"><%= link_to "サークルに参加する", new_user_registration_path, class:"nav-link app-a" %></li>
+            <li class="nav-item app-li"><%= link_to "サークルを作る", new_leader_registration_path, class:"nav-link app-a" %></li>
           <% end %>
         </ul>
       </nav>

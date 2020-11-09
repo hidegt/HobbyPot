@@ -16,13 +16,17 @@ class Leaders::CirclesController < ApplicationController
     @circle = Circle.new(circle_params)
     @circle.leader_id = current_leader.id
     @circle.save
-    redirect_to circles_path
+    redirect_to leaders_circles_path
   end
 
   def edit
+    @circle = Circle.find(params[:id])
   end
 
   def update
+    @circle = Circle.find(params[:id])
+    @circle.update
+    redirect_to leaders_circle_path(@circle)
   end
 
   private
