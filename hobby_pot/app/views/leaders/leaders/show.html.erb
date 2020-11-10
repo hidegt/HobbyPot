@@ -1,0 +1,6 @@
+<div class="profile-container">
+  <h3 class="profile-name"><%= @leader.name %></h3>
+  <!--<%= attachment_image_tag @leader, :leader_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>  % if @leader.id == current_leader.id %>-->
+    <p><%= link_to "プロフィール編集", edit_leaders_leader_path(@leader), class: "pull-right" %></p>
+  <!--% end %>-->
+</div>

@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+  # Leader.create!(
+  #   name: '山リーダー',
+  #   circle_name: 'yamabito',
+  #   email: 'test@example.com',
+  #   password: 'aaaaaa')
+  # User.create!(
+  #   [
+  #   {
+  #     email: 'sample1@sample.com',
+  #     name: 'サークル太郎',
+  #     image: File.open('./app/assets/images/test.jpg'),
+  #     password: '111111'
+  #   },
+  #   {
+  #     email: 'sample2@sample.com',
+  #     name: 'サークル花子',
+  #     image: File.open('./app/assets/images/test.jpg'),
+  #     password: '111111'
+  #   }
+  # ])

@@ -11,15 +11,24 @@ Rails.application.routes.draw do
   #リーダー側ルート
   namespace :leaders do
     resources :circles
-    # 退会機能をつける
-    resources :leaders, only:[:show, :edit, :update]
+    resources :leaders, only:[:show, :edit, :update] do
+      member do
+        #退会&ステータス変更
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
   end
-
   #ユーザー側ルート
   scope module: :users do
     resources :circles, only: [:index, :show]
-    # 退会機能をつける
-    resources :users, only:[:show, :edit, :update]
+    resources :users, only:[:show, :edit, :update] do
+      member do
+        #退会&ステータス変更
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
   end
   root to: 'users/circles#top'
 end

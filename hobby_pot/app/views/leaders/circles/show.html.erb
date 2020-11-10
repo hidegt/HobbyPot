@@ -1,0 +1,7 @@
+<!--leaders/circles-->
+  <%= attachment_image_tag @circle, :image, fallback: "no_image.jpg", class: "img-thumbnail", size: "200x200" %>
+  <%= @circle.circle_title %>
+  <%= @circle.date_and_time %>
+  <%= @circle.join_cost %>
+  <%= @circle.number_people %>
+  <%= @circle.circle_status %>
