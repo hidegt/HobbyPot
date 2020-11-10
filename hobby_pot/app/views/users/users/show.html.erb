@@ -1,0 +1,4 @@
+<%= @user.name %>
+<%= @user.email %>
+<%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
+<%= link_to "退会する", unsubscribe_user_path(current_user.id) %>
