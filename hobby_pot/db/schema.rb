@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_092923) do
+ActiveRecord::Schema.define(version: 2020_11_10_135846) do
 
   create_table "circles", force: :cascade do |t|
     t.integer "leader_id", null: false
