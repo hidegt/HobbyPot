@@ -25,6 +25,11 @@
 body{
   background-color: #fffddb;
 }
+// 右端の余白を消すため
+#wrapper {
+  width: 100%;
+  overflow: hidden;
+}
 // application.html.erb
 header{
   background-color: #fc7600;
@@ -33,20 +38,21 @@ header{
 }
 // ヘッダー部分のボーダーを斜めにする
 .app-li{
-  -webkit-transform: skewX(160deg);
-  transform: skewX(160deg);
+  -webkit-transform: skewX(150deg);
+  transform: skewX(150deg);
   border-right: 2px solid #fff;
 }
 .app-li:last-child{
   border-right: none;
 }
 .app-li .app-a{
-  transform: skewX(-160deg); //テキストの斜めを戻す
+  transform: skewX(-150deg); //テキストの斜めを戻す
 }
 .app-a{
   text-decoration: none;
   color: #fff;
   font-size: 20px;
+  // display: none;
 }
 li{
   color: #fff;
