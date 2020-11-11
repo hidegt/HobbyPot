@@ -7,6 +7,7 @@ class Leaders::CirclesController < ApplicationController
   end
 
   def show
+    @circle = Circle.find(params[:id])
   end
 
   def new
@@ -43,7 +44,10 @@ class Leaders::CirclesController < ApplicationController
     params.require(:circle).permit(:circle_title, :image, :circle_about,:date_and_time,:schedule,:prepare,:join_cost, :number_people, :circle_status)
   end
   def if_not_leader
-    redirect_to root_path unless current_leader
+    @leader = Leader.find(params[:id])
+    unless @leader == current_leader
+      redirect_to leaders_circle_path(current_leader)
+    end
   end
   def set_circle
     @circle = Circle.find(params[:id])
