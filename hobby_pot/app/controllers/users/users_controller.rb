@@ -3,6 +3,7 @@ class Users::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :unsubscribe, :withdraw]
   def show
     @user = User.find(params[:id])
+    @circles = @user.circles
   end
 
   def edit
