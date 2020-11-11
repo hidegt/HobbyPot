@@ -1,8 +1,9 @@
 class Leaders::LeadersController < ApplicationController
   before_action :if_not_current_leader, only: [:edit, :update, :unsubscribe, :withdraw]
-  before_action :set_leader, only: [:edit, :update, :unsubscribe, :withdraw]
+  before_action :set_leader, only: [:update, :unsubscribe, :withdraw]
   def show
     @leader = Leader.find(params[:id])
+    @circles = @leader.circles
   end
 
   def edit
@@ -10,7 +11,7 @@ class Leaders::LeadersController < ApplicationController
 
   def update
     @leader.update(leader_params)
-    redirect_to leader_path(@leader.id)
+    redirect_to leaders_leader_path(@leader.id)
   end
 
   #退会機能
@@ -24,10 +25,13 @@ class Leaders::LeadersController < ApplicationController
     reset_session
     redirect_to root_path
   end
+  
   private
   def if_not_current_leader
     @leader = Leader.find(params[:id])
-    redirect_to leaders_leader_path(@leader.id) unless current_leader
+    unless @leader == current_leader
+      redirect_to leaders_leader_path(current_leader)
+    end
   end
   def set_leader
     @leader = current_leader

@@ -28,7 +28,9 @@ class Users::UsersController < ApplicationController
   private
   def if_not_current_user
     @user = User.find(params[:id])
-    redirect_to user_path(@user.id) unless current_user.present?
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
   end
   def set_user
     @user = current_user
