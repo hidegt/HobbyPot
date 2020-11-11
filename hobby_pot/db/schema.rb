@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_015730) do
+ActiveRecord::Schema.define(version: 2020_11_11_082724) do
 
   create_table "circles", force: :cascade do |t|
     t.integer "leader_id", null: false
@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(version: 2020_11_11_015730) do
     t.boolean "circle_status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "postcode"
+    t.string "prefecture_code"
+    t.string "address_city"
+    t.string "address_street"
+    t.string "address_building"
   end
 
   create_table "leaders", force: :cascade do |t|

@@ -1,9 +1,31 @@
 <!--leaders-->
-<% @circles.each do |c| %>
-  <%= attachment_image_tag c, :image, fallback: "no_image.jpg", class: "img-thumbnail", size: "200x200" %>
-  <%= c.circle_title %>
-  <%= c.date_and_time %>
-  <%= c.join_cost %>
-  <%= c.number_people %>
-  <%= c.circle_status %>
-<% end %>
+<div class="containe">
+  <div class="row justify-content-center m-3 p-3">
+    <h2 class="circle">イベント一覧</h2>
+  </div>
+    <div class="row">
+  <% @circles.each do |circle| %>
+      <div class="card my-3 mx-auto" style="max-width: 800px;">
+        <h5 class="card-header"><%= circle.circle_title %></h5>
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <%= attachment_image_tag circle, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>
+            </div>
+            <div class="col-md-8">
+              <p class="card-text offset-md-1">
+                <i class="fas fa-pencil-alt"></i>
+                <%= safe_join(circle.circle_about.split("\n"),tag(:br)) %>
+              </p>
+              <p class="card-text offset-md-1">
+                <i class="fas fa-bus-alt"></i> 場所: 
+                <%= circle.prefecture_name %><%= circle.address_city %><%= circle.address_street %><%= circle.address_building %>
+              </p>
+              <p class="card-text offset-md-1"><i class="fas fa-sun"></i> 開催日: <%= circle.date_and_time %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  <% end %>
+</div>
