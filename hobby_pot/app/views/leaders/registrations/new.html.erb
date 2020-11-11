@@ -10,6 +10,9 @@
      <%= f.text_field :name, autofocus: true, placeholder: "  アカウント名",class:"form_font"%>
     </div>
     <div class="field">
+      <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name,{include_blank: "　都道府県選択"},class:"form_font" ) %>
+    </div>
+    <div class="field">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "  メールアドレス",class:"form_font" %>
     </div>
   

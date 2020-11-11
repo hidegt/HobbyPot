@@ -25,7 +25,7 @@
               <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link app-a" %></li>
             <% elsif leader_signed_in? %>
               <li class="nav-item wc">ようこそ　<%= current_leader.circle_name %>　　<%= current_leader.name %>さん</li>
-              <li class="nav-item"><a class="nav-link app-a" href="#">マイページ</a></li>
+              <li class="nav-item"><%= link_to "マイページ", leaders_leader_path(current_leader.id), class:"nav-link app-a" %></li>
               <li class="nav-item"><a class="nav-link app-a" href="#">サークル一覧</a></li>
               <li class="nav-item"><%= link_to "イベント作成", new_leaders_circle_path, class:"nav-link app-a" %></li>
               <li class="nav-item"><%= link_to "ログアウト", destroy_leader_session_path, method: :delete, class:"nav-link app-a" %></li>

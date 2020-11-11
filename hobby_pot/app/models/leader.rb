@@ -7,4 +7,6 @@ class Leader < ApplicationRecord
   has_many :circles, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+
+  attachment :leader_image
 end
