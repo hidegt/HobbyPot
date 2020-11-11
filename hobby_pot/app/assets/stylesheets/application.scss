@@ -200,4 +200,35 @@ li{
   color: #fff;
   text-shadow: 1px 1px 0px rgba(0,0,0,.1);
   box-shadow: 0px 5px 0px #D45E0B;
+  cursor: pointer;
+}
+.signup_btn:active {
+  top: 3px;
+  box-shadow: none;
+}
+.signup_btn:hover{
+  background: #fa631d;
+}
+// マイページ関連
+.taikai {
+  text-align:center;
+  padding:20px;
+  padding-top:35px;
+  color:#777;
+  cursor:pointer;
+}
+
+.social {
+  display:none;
+}
+.taikai_btn {
+  background:#3b5998;
+  box-shadow:0px 3px 0px #2c416e;
+  position:relative;
+  width: 100%;
+  padding: 20px;
+  border-radius: 6px;
+  border: 0;
+  font-size: 1.2em;
+  text-shadow: 1px 1px 0px rgba(0,0,0,.1);
 }

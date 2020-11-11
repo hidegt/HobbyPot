@@ -1,0 +1,27 @@
+<div class="login_form">
+  <h2 class="login_title">プロフィール編集</h2>
+  <%= form_with model:@user, url: user_path do |f| %>
+  <div class="field">
+     <%= f.attachment_field :user_image, placeholder: "  写真を選択", class:"" %>
+  </div>
+  <div class="field">
+    <%= f.label :アカウント名, class:"fas fa-user pt-3" %>
+    <%= f.text_field :name, autofocus: true, placeholder: " 　アカウント名",class:"form_font" %>
+  </div>
+  <div class="field">
+    <%= f.label :都道府県, class:"fas fa-map-marked-alt pt-3" %>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name,{include_blank: "---"},class:"form_font" ) %>
+  </div>
+  <div class="field">
+    <%= f.label :自己紹介, class:"fas fa-info-circle pt-3" %>
+    <%= f.text_area :introduction, class:"form_font" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "更新する", class:"signup_btn" %>
+  </div>
+<% end %>
+<h6 class="taikai">退会を希望しますか？</h6>
+  <div class="social">
+    <%= link_to "退会する", unsubscribe_user_path(current_user.id), class:"btn btn-primary taikai_btn my-auto" %>
+  </div>
+</div>

@@ -18,6 +18,7 @@
 //= require popper
 //= require bootstrap-sprockets
 
+// トップへスクロール
 $(document).ready(function() {
   $('#back a').on('click',function(event){
     $('body, html').animate({
@@ -26,3 +27,9 @@ $(document).ready(function() {
     event.preventDefault();
   });
 });
+// 退会へのボタン
+$(document).ready(function(e){
+   $('.taikai').on('click',function(){
+      $('.social').stop().slideToggle();
+   });
+})
