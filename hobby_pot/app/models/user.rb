@@ -7,5 +7,12 @@ class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
   
+  #お気に入り
+  has_many :favorites, dependent: :destroy
+  #fav_circleはcircle_idを使ってcircleテーブルと繋がる意味。
+  # sourceでどのテーブルと繋がるか参照
+  has_many :fav_circles, through: :favorites, source: :circle
+  
   attachment :user_image
+ 
 end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  circle: one
+  leader: one
+
+two:
+  user: two
+  circle: two
+  leader: two
