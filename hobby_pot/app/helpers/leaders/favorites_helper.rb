@@ -1,0 +1,2 @@
+module Leaders::FavoritesHelper
+end
