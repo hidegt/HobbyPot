@@ -19,9 +19,25 @@
 
   <%= render 'common/circle_show', circle: @circle %>
 
-  <% if user_signed_in? %>
-      <button>参加する</button>
-    <% else %>
-      <%= link_to "会員登録(無料)してサークルに参加する", new_user_registration_path, class:"btn btn-success" %>
+  <%= form_with(model:[@circle, @comment], local: true) do |f| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= f.text_area :circle_comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+    </div>
+  </div>
+  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>
+
+
+  <% @circle.circle_comments.each do |circle_comment| %>
+
+    <%= circle_comment.user.name %></a></br>
+    <%= circle_comment.created_at.strftime('%Y/%m/%d') %></br>
+    <%= circle_comment.comment %></br>
+    <% if circle_comment.user == current_user %>
+      <%= link_to "削除", circle_circle_comment_path(circle_comment.circle, circle_comment), method: :delete, class: "btn btn-danger pull-right" %><br>
     <% end %>
+
+  <% end %>
+
 </div>

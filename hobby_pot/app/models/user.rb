@@ -12,6 +12,8 @@ class User < ApplicationRecord
   #fav_circleはcircle_idを使ってcircleテーブルと繋がる意味。
   # sourceでどのテーブルと繋がるか参照
   has_many :fav_circles, through: :favorites, source: :circle
+  #コメント
+  has_many :circle_comments, dependent: :destroy
   
   attachment :user_image
  

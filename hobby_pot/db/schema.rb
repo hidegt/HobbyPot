@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_015438) do
+ActiveRecord::Schema.define(version: 2020_11_12_143902) do
+
+  create_table "circle_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "circle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["circle_id"], name: "index_circle_comments_on_circle_id"
+    t.index ["user_id"], name: "index_circle_comments_on_user_id"
+  end
 
   create_table "circles", force: :cascade do |t|
     t.integer "leader_id", null: false
@@ -35,12 +45,10 @@ ActiveRecord::Schema.define(version: 2020_11_12_015438) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "circle_id"
-    t.integer "leader_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["circle_id"], name: "index_favorites_on_circle_id"
-    t.index ["leader_id", "circle_id"], name: "index_favorites_on_leader_id_and_circle_id", unique: true
-    t.index ["leader_id"], name: "index_favorites_on_leader_id"
+    t.index ["circle_id"], name: "index_favorites_on_leader_id_and_circle_id", unique: true
     t.index ["user_id", "circle_id"], name: "index_favorites_on_user_id_and_circle_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end

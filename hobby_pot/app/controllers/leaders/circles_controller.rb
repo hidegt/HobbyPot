@@ -1,13 +1,6 @@
 class Leaders::CirclesController < ApplicationController
   before_action :if_not_leader
-  before_action :set_circle, only: [:show, :edit, :update]
-
-  def index
-    @circles = Circle.all
-  end
-
-  def show
-  end
+  before_action :set_circle, only: [:edit, :update]
 
   def new
     @circle = Circle.new
@@ -32,10 +25,6 @@ class Leaders::CirclesController < ApplicationController
     else
      render :edit
     end
-  end
-  
-  def bookmarks
-    @circles = current_leader.fav_circles.includes(:leader)
   end
 
   private
