@@ -33,10 +33,6 @@ class Leaders::CirclesController < ApplicationController
      render :edit
     end
   end
-  
-  def bookmarks
-    @circles = current_leader.fav_circles.includes(:leader)
-  end
 
   private
   def circle_params

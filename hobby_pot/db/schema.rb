@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_015438) do
+ActiveRecord::Schema.define(version: 2020_11_11_082724) do
 
   create_table "circles", force: :cascade do |t|
     t.integer "leader_id", null: false
@@ -30,19 +30,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_015438) do
     t.string "address_city"
     t.string "address_street"
     t.string "address_building"
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "circle_id"
-    t.integer "leader_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["circle_id"], name: "index_favorites_on_circle_id"
-    t.index ["leader_id", "circle_id"], name: "index_favorites_on_leader_id_and_circle_id", unique: true
-    t.index ["leader_id"], name: "index_favorites_on_leader_id"
-    t.index ["user_id", "circle_id"], name: "index_favorites_on_user_id_and_circle_id", unique: true
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "leaders", force: :cascade do |t|

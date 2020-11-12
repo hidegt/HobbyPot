@@ -1,7 +1,11 @@
 <!--users-->
-<div class="containe">
-  <div class="row justify-content-center m-3 p-3">
-    <h2 >イベント一覧</h2>
-  </div>
-  <%= render 'common/circle_index', circles: @circles %>
-</div>
+<h2 class="circle">イベント一覧</h2>
+      <% @circles.each do |circle| %>
+        <div class="card bg-dark text-white">
+          <%= attachment_image_tag circle, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>
+          <div class="card-img-overlay">
+            <h5 class="card-title"><%= circle.circle_title %></h5>
+            <p class="card-text"><%= safe_join(circle.circle_about.split("\n"),tag(:br)) %></p>
+            <p class="card-text">開催日　<%= circle.date_and_time %></p>
+          </div>
+        </div>

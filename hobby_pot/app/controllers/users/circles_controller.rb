@@ -10,8 +10,4 @@ class Users::CirclesController < ApplicationController
   def show
     @circle = Circle.find(params[:id])
   end
-  
-  def bookmarks
-    @circles = current_user.fav_circles.includes(:user)
-  end
 end
