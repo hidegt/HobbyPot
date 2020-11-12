@@ -3,17 +3,14 @@ class Circle < ApplicationRecord
   belongs_to :leader
   belongs_to :user
   
+
   #お気に入り
   has_many :favorites, dependent: :destroy
-  # has_many :users, through: :favorites
-  # has_many :leaders, through: :favorites
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
-  def favorited_by?(leader)
-    favorites.where(leader_id: leader.id).exists?
-  end
-  
+  #コメント
+  has_many :circle_comments, dependent: :destroy
   # 住所自動入力
   include JpPrefecture
   jp_prefecture :prefecture_code

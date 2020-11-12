@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :leaders do
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
-  get 'favorites/create'
-  get 'favorites/destroy'
   devise_for :leaders, controllers: {
     registrations: 'leaders/registrations',
     sessions: 'leaders/sessions'
@@ -20,7 +14,6 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       get 'bookmarks', on: :collection
     end
-    # 退会機能をつける
     resources :leaders, only:[:show, :edit, :update] do
       member do
         #退会&ステータス変更
@@ -35,8 +28,8 @@ Rails.application.routes.draw do
     resources :circles, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
       get 'bookmarks', on: :collection
+      resources :circle_comments, only:[:create, :destroy]
     end
-    # 退会機能をつける
     resources :users, only:[:show, :edit, :update] do
       member do
         #退会&ステータス変更
@@ -45,7 +38,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
   root to: 'users/circles#top'
-  
+
 end
