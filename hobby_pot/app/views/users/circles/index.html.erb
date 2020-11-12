@@ -1,9 +1,11 @@
 <!--users-->
-<% @circles.each do |c| %>
-  <%= attachment_image_tag c, :image, fallback: "no_image.jpg", class: "img-thumbnail", size: "200x200" %>
-  <%= c.circle_title %>
-  <%= c.date_and_time %>
-  <%= c.join_cost %>
-  <%= c.number_people %>
-  <%= c.circle_status %>
-<% end %>
+<h2 class="circle">イベント一覧</h2>
+      <% @circles.each do |circle| %>
+        <div class="card bg-dark text-white">
+          <%= attachment_image_tag circle, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>
+          <div class="card-img-overlay">
+            <h5 class="card-title"><%= circle.circle_title %></h5>
+            <p class="card-text"><%= safe_join(circle.circle_about.split("\n"),tag(:br)) %></p>
+            <p class="card-text">開催日　<%= circle.date_and_time %></p>
+          </div>
+        </div>

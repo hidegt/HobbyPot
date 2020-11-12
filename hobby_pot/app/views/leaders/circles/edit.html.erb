@@ -1,2 +1,60 @@
-form_with
-<%= f.radio_button :circle_status, true, checked: true %> 募集中　<%= f.radio_button :circle_status, false %> 募集終了
+<div class="container">
+
+<%= form_with model:@circle,url:leaders_circles_path(@circle), local:true do |f| %>
+  <% if @circle.errors.any? %>
+    <%= @circle.errors.count %>件のエラーが発生しました
+    <% @circle.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+<div class="form-row mt-5 border border-warning shadow p-3 mb-5 bg-white rounded">
+  <div class="form-group col-md-6">
+  <%= f.attachment_field :image %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= f.label :サークル名, class:"label" %>
+    <%= f.text_field :circle_title, class:"form-control" %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= f.label :開催日時, class:"label" %>
+    <%= f.datetime_field :date_and_time, class:"form-control col-md-5" %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= f.label :サークルについて, class:"label" %>
+    <%= f.text_area :circle_about, class:"form-control" %>
+  </div>
+  <div  class="form-group col-md-6">
+    <%= f.label :参加費, class:"label" %>
+    <%= f.text_field :join_cost, class:"form-control col-md-4" %>
+  </div>
+  <div  class="form-group col-md-6">
+    <%= f.label :当日のスケジュール, class:"label" %>
+    <%= f.text_area :schedule, class:"form-control" %>
+  </div>
+  <div  class="form-group col-md-6">
+    <%= f.label :募集人数, class:"label" %>
+    <%= f.text_field :number_people, class:"form-control col-md-4" %>
+  </div>
+  <div  class="form-group col-md-6">
+    <%= f.label :当日用意するもの, class:"label" %>
+    <%= f.text_area :prepare, class:"form-control" %>
+  </div>
+  
+  <h2>Your address</h2>
+  <p>zip code</p>
+  <%= f.text_field :postcode %>
+  <p>prefecture</p>
+  <%= f.text_field :prefecture_code, collection: JpPrefecture::Prefecture.all, :value_method => :name, include_blank: '都道府県' %><br>
+  <p>city</p>
+  <%= f.text_field :address_city %>
+  <p>street</p>
+  <%= f.text_field :address_street %>
+  <p>builbding name</p>
+  <%= f.text_field :address_building %>
+  <%= f.radio_button :circle_status, true, checked: true %> 募集中　<%= f.radio_button :circle_status, false %> 募集終了
+
+  <div class="actions">
+  
+  <%= f.submit %>
+<% end %>
+</div>

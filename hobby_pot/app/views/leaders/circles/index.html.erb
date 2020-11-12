@@ -1,9 +1,46 @@
 <!--leaders-->
-<% @circles.each do |c| %>
-  <%= attachment_image_tag c, :image, fallback: "no_image.jpg", class: "img-thumbnail", size: "200x200" %>
-  <%= c.circle_title %>
-  <%= c.date_and_time %>
-  <%= c.join_cost %>
-  <%= c.number_people %>
-  <%= c.circle_status %>
-<% end %>
+<div class="containe">
+  <div class="row justify-content-center m-3 p-3">
+    <h2 class="circle">イベント一覧</h2>
+  </div>
+  <% @circles.each do |circle| %>
+    <div class="row">
+      <div class="card my-3 mx-auto" style="max-width: 800px;">
+        <h5 class="card-header"><%= circle.circle_title %></h5>
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <%= attachment_image_tag circle, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>
+            </div>
+            <div class="col-md-8">
+              <p class="card-text offset-md-1">
+                <i class="fas fa-pencil-alt"></i>
+                <%= safe_join(circle.circle_about.split("\n"),tag(:br)) %>
+              </p>
+              <p class="card-text offset-md-1">
+                <i class="fas fa-bus-alt"></i> 場所:
+                <%= circle.prefecture_code%><%= circle.address_city %><%= circle.address_street %><%= circle.address_building %>
+              </p>
+              <p class="card-text offset-md-1"><i class="fas fa-sun"></i> 開催日: <%= circle.date_and_time.strftime('%Y/%m/%d %H:%M') %></p>
+              <p class="card-text offset-md-1"><i class="fas fa-comments-dollar"></i> 参加費: <%= number_with_delimiter(circle.join_cost) + "円" %></p>
+              <!--サークル人数ーサークル参加人数にする-->
+              <% if circle.number_people.to_i >= 10 %>
+                <%= link_to  leaders_circle_path(circle) do %>
+                  <div class="btn btn-primary offset-md-8 text-center stretched-link">残席あります！<br>詳細をみる</div>
+                <% end %>
+              <% elsif circle.number_people.to_i >= 1 %>
+                <%= link_to  leaders_circle_path(circle) do %>
+                  <div class="btn btn-warning offset-md-8 text-center stretched-link">残席残りわずか！<br>詳細をみる</div>
+                <% end %>
+              <% elsif circle.number_people.to_i >= 0 %>
+                <%= link_to  leaders_circle_path(circle) do %>
+                  <div class="btn btn-danger text-right offset-md-8 text-center">満席です<br>詳細をみる</div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
