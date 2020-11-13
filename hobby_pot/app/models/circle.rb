@@ -2,7 +2,6 @@ class Circle < ApplicationRecord
   attachment :image
   belongs_to :leader
   belongs_to :user
-  
 
   #お気に入り
   has_many :favorites, dependent: :destroy
@@ -11,6 +10,9 @@ class Circle < ApplicationRecord
   end
   #コメント
   has_many :circle_comments, dependent: :destroy
+  #参加
+  has_many :join_statuses
+  
   # 住所自動入力
   include JpPrefecture
   jp_prefecture :prefecture_code

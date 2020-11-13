@@ -10,10 +10,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #リーダー側ルート
   namespace :leaders do
-    resources :circles do
-      resource :favorites, only: [:create, :destroy]
-      get 'bookmarks', on: :collection
-    end
+    #サークル
+    resources :circles, only:[:new, :create, :edit, :update]
+    #マイページ
     resources :leaders, only:[:show, :edit, :update] do
       member do
         #退会&ステータス変更
@@ -21,15 +20,18 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
+    resources :join_statuses, only: [:index, :show,]
   end
 
   #ユーザー側ルート
   scope module: :users do
+    #サークル
     resources :circles, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
       get 'bookmarks', on: :collection
       resources :circle_comments, only:[:create, :destroy]
     end
+    #マイページ
     resources :users, only:[:show, :edit, :update] do
       member do
         #退会&ステータス変更
@@ -37,6 +39,10 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
+    #サークル参加
+    resources :join_statuses, only: [:create, :index, :show]
+    post 'join_statuses/confirm' => 'join_statuses#confirm', as: 'confirm'
+    get 'join_statuses/thanks' => 'join_statuses#thanks', as: 'thanks'
   end
 
   root to: 'users/circles#top'

@@ -1,0 +1,2 @@
+module Users::JoinCirclesHelper
+end

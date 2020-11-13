@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_143902) do
+ActiveRecord::Schema.define(version: 2020_11_13_033109) do
 
   create_table "circle_comments", force: :cascade do |t|
     t.text "comment"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 2020_11_12_143902) do
     t.index ["circle_id"], name: "index_favorites_on_leader_id_and_circle_id", unique: true
     t.index ["user_id", "circle_id"], name: "index_favorites_on_user_id_and_circle_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "join_circles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "circle_id"
+    t.integer "join_status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "leaders", force: :cascade do |t|
