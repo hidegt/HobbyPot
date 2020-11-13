@@ -39,9 +39,11 @@
   </div>
   <div class="row justify-content-center my-5">
     <% if user_signed_in? %>
-      <button>参加する</button>
+      <%= form_with model: @join_circle, class: "form-inline", local: true do |f| %>
+        <%= f.hidden_field :circle_id, value: @circle.id %>
+      <%= f.submit "イベントに参加する", class: " btn btn-primary" %>
     <% else %>
-      <%= link_to "会員登録(無料)してサークルに参加する", new_user_registration_path, class:"btn btn-success" %>
+      <%= link_to "会員登録(無料)してイベントに参加する", new_user_registration_path, class:"btn btn-success" %>
     <% end %>
   </div>
 </div>

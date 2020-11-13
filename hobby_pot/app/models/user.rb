@@ -14,7 +14,8 @@ class User < ApplicationRecord
   has_many :fav_circles, through: :favorites, source: :circle
   #コメント
   has_many :circle_comments, dependent: :destroy
+  #参加
+  has_many :join_statuses
   
   attachment :user_image
- 
 end
