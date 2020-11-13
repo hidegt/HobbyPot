@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
-    resources :join_statuses, only: [:index, :show,]
+    resources :join_statuses, only: [:index, :show, :update]
   end
 
   #ユーザー側ルート
