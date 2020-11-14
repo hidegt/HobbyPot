@@ -11,8 +11,8 @@ class Circle < ApplicationRecord
   #コメント
   has_many :circle_comments, dependent: :destroy
   #参加
-  has_many :join_statuses
-  
+  has_many :join_circles
+
   # 住所自動入力
   include JpPrefecture
   jp_prefecture :prefecture_code
