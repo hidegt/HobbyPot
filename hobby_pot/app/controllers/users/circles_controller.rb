@@ -10,7 +10,7 @@ class Users::CirclesController < ApplicationController
   def show
     @circle = Circle.find(params[:id])
     @comment = CircleComment.new
-    @join_circle = Join.new
+    @join_circle = JoinCircle.new
   end
   
   def bookmarks

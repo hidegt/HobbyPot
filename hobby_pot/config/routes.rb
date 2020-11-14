@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
-    resources :join_statuses, only: [:index, :show, :update]
+    resources :join_circles, only: [:index, :show, :update]
   end
 
   #ユーザー側ルート
@@ -40,9 +40,9 @@ Rails.application.routes.draw do
       end
     end
     #サークル参加
-    resources :join_statuses, only: [:create, :index, :show]
-    post 'join_statuses/confirm' => 'join_statuses#confirm', as: 'confirm'
-    get 'join_statuses/thanks' => 'join_statuses#thanks', as: 'thanks'
+    resources :join_circles, only: [:create, :index]
+    post 'join_circles/confirm' => 'join_circles#confirm', as: 'confirm'
+    get 'join_circles/thanks' => 'join_circles#thanks', as: 'thanks'
   end
 
   root to: 'users/circles#top'
