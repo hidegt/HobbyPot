@@ -1,0 +1,51 @@
+<div class="row justify-content-center m-3 p-3">
+  <h1><%= circle.circle_title %><h1>
+</div>
+
+<div class="row mx-auto mb-5">
+  <div class="col-md-3">
+  <%= attachment_image_tag circle, :image, size: "500x500", fallback: "no_image.jpg", class:"mx-auto" %>
+  </div>
+<div class="col-md-6 offset-md-2">
+  <div class="row justify-content-center my-3">
+    <div class="col-md-4 border-bottom border-secondary"><i class="fas fa-sun"></i> 開催日: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= circle.date_and_time.strftime('%Y/%m/%d %H:%M') %></div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-4 border-bottom border-secondary"><i class="fas fa-bus-alt"></i> 場所: </div>
+    <div class="col-md-4 border-bottom border-secondary">
+      <%= circle.prefecture_code%><%= circle.address_city %><%= circle.address_street %><br><%= circle.address_building %>
+    </div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-4 border-bottom border-secondary"><i class="fas fa-pencil-alt"></i> イベント内容: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= safe_join(circle.circle_about.split("\n"),tag(:br)) %></div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-4 border-bottom border-secondary"><i class="far fa-clock"></i> 当日の流れ: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= safe_join(circle.schedule.split("\n"),tag(:br)) %></div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-4 border-bottom border-secondary"><i class="fas fa-comments-dollar"></i> 参加費: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= number_with_delimiter(circle.join_cost) + "円" %></div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-4 border-bottom border-secondary"><i class="fas fa-users"></i>　募集人数: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= circle.number_people + "人" %></div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-4 border-bottom border-secondary"><i class="fas fa-shopping-bag"></i> 用意するもの: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= safe_join(circle.prepare.split("\n"),tag(:br)) %></div>
+  </div>
+  <div class="row justify-content-center my-5">
+    <% if user_signed_in? %>
+      <%= form_with model: @join_circle, url: confirm_path, class: "form-inline", local: true do |f| %>
+        <%= f.hidden_field :circle_id, value: @circle.id %>
+        <%= f.submit "イベントに参加する", class: " btn btn-primary" %>
+      <% end %>
+    <% else %>
+      <%= link_to "会員登録(無料)してイベントに参加する", new_user_registration_path, class:"btn btn-success" %>
+    <% end %>
+  </div>
+</div>
+</div>
