@@ -4,7 +4,6 @@ class CreateCircleComments < ActiveRecord::Migration[5.2]
       t.text :comment
       t.references :user, foreign_key: true
       t.references :circle, foreign_key: true
-      t.references :leader, foreign_key: true
 
       t.timestamps
     end
