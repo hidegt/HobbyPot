@@ -1,5 +1,6 @@
 <!--users-->
 <div class="container">
+  <% if user_signed_in? %>
   <% if @circle.favorited_by?(current_user) %>
   <li>
     <%= link_to circle_favorites_path(@circle), method: :delete do %>
@@ -15,7 +16,7 @@
     <% end %>
   </li>
 <% end %>
-
+<% end %>
   <%= render 'common/circle_show', circle: @circle %>
 
   <%= form_with(model:[@circle, @comment], local: true) do |f| %>

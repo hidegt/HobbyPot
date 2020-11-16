@@ -99,11 +99,11 @@ li{
   font-size: 40px;
 }
 // about
-.about-section{
-  padding-top: 90px;
+.about-section,.lineup-section{
+  padding-top: 50px;
   padding-bottom: 40px;
 }
-.about-title{
+.about-title,.lineup-title{
   font-size: 40px;
   text-align: center;
 }
@@ -138,7 +138,15 @@ li{
 #lineup{
   background-color: #fff;
 }
+.lineup-row {
+  margin-top: 50px;
+}
 // ===circle===
+// cirle index
+.zoom:hover {
+  transform:scale(1.1,1.1);
+  transition: 2s all;
+}
 // circle show
 // circle confirm
 .confirm_t{
@@ -233,6 +241,9 @@ li{
   top: 3px;
   box-shadow: none;
 }
+.login_btn:hover {
+  background: #f79b97;
+}
 .signup_btn{
   position: relative;
   width: 100%;
@@ -254,7 +265,7 @@ li{
   background: #fa631d;
 }
 // マイページ関連
-.taikai {
+.taikai,.log_url {
   text-align:center;
   padding:20px;
   padding-top:35px;
@@ -276,3 +287,5 @@ li{
   font-size: 1.2em;
   text-shadow: 1px 1px 0px rgba(0,0,0,.1);
 }
+
+

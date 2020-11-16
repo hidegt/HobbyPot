@@ -28,7 +28,7 @@ $(document).ready(function() {
   });
 });
 // 退会へのボタン
-$(document).ready(function(e){
+$(document).ready(function(){
    $('.taikai').on('click',function(){
       $('.social').stop().slideToggle();
    });

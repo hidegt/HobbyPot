@@ -17,9 +17,6 @@
     </div>
   
     <div class="field">
-      <!--% if @minimum_password_length %>-->
-      <!--<em>(%= @minimum_password_length %> characters minimum)</em>-->
-      <!--% end %><br />-->
       <%= f.password_field :password, autocomplete: "new-password", placeholder: "  パスワード(６文字以上)",class:"form_font" %>
     </div>
     <div class="field">
@@ -30,5 +27,6 @@
       <%= f.submit "サークルリーダーになる", class:"signup_btn" %>
     </div>
   <% end %>
+  <h6 class="log_url">すでにアカウントをお持ちの方は<br><%= render "leaders/shared/links" %>からログインしてください</h6>
 </div>
-<%= render "leaders/shared/links" %>
+
