@@ -38,10 +38,30 @@
   </div>
 </div>
 <div id="lineup">
-  <div class="about-section">
-    <h2 class="about-title"><span class="top-border">Line up</span></h2>
+  <div class="lineup-section">
+    <h2 class="lineup-title"><span class="top-border">Line up</span></h2>
+    <div class="row justify-content-around lineup-row">
+        <% @circles.each do |circle| %>
+          <div class="card mx-3" style="width: 18rem;">
+            <%= attachment_image_tag circle, :image, size: "200x200", fallback: "no_image.jpg", class:"card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= circle.circle_title %></h5>
+              <p class="card-text"><%= circle.circle_about %></p>
+            </div>
+            <div  class="card-footer">
+              <%= link_to "詳細を見る",circle_path(circle.id),  class:"card-link" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="pull-right">
+      <%= link_to "もっと見る", circles_path %>
+    </div>
   </div>
 </div>
+
+
 <!--以下js専用-->
 <script>
   'use strict'
