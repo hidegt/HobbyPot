@@ -139,6 +139,11 @@ li{
   background-color: #fff;
 }
 // ===circle===
+// cirle index
+.zoom:hover {
+  transform:scale(1.1,1.1);
+  transition: 2s all;
+}
 // circle show
 // circle confirm
 .confirm_t{
@@ -233,6 +238,9 @@ li{
   top: 3px;
   box-shadow: none;
 }
+.login_btn:hover {
+  background: #f79b97;
+}
 .signup_btn{
   position: relative;
   width: 100%;
@@ -254,7 +262,7 @@ li{
   background: #fa631d;
 }
 // マイページ関連
-.taikai {
+.taikai,.log_url {
   text-align:center;
   padding:20px;
   padding-top:35px;

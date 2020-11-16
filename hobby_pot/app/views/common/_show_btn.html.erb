@@ -1,0 +1,20 @@
+<!--サークル人数ーサークル参加人数にする-->
+<% if user_signed_in? %>
+
+  <% if c.number_people.to_i >= 10 %>
+    <%= link_to circle_path(c) do %>
+      <div class="btn btn-primary offset-md-8 text-center stretched-link">残席あります！<br>詳細をみる</div>
+    <% end %>
+  <% elsif c.number_people.to_i >= 1 %>
+    <%= link_to circle_path(c) do %>
+      <div class="btn btn-warning offset-md-8 text-center stretched-link">残席残りわずか！<br>詳細をみる</div>
+    <% end %>
+  <% elsif c.number_people.to_i >= 0 %>
+    <%= link_to circle_path(c) do %>
+      <div class="btn btn-danger text-right offset-md-8 text-center">満席です<br>詳細をみる</div>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <%= link_to "詳細をみる", circle_path(c), class:"btn btn-primary offset-md-8 text-center stretched-link" %>
+<% end %>
