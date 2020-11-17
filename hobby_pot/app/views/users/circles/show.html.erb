@@ -1,31 +1,16 @@
-<!--users-->
 <div class="container">
-  <% if user_signed_in? %>
-  <% if @circle.favorited_by?(current_user) %>
-  <li>
-    <%= link_to circle_favorites_path(@circle), method: :delete do %>
-      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-      <%= @circle.favorites.count %> いいね
-    <% end %>
-  </li>
-  <% else %>
-  <li>
-    <%= link_to circle_favorites_path(@circle), method: :post do %>
-      <i class="fa fa-heart-o" aria-hidden="true"></i>
-      <%= @circle.favorites.count %> いいね
-    <% end %>
-  </li>
-<% end %>
-<% end %>
+  <div id="favorites_buttons_<%= @circle.id %>">
+    <%= render 'users/favorites/favorite', circle: @circle %>
+  </div>
   <%= render 'common/circle_show', circle: @circle %>
 
   <%= form_with(model:[@circle, @comment], local: true) do |f| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <%= f.text_area :comment, rows:'5', class: "form-control" ,placeholder: "コメントをここに" %>
+    <%= f.submit "送信する", class: "btn btn-lg" %>
     </div>
   </div>
-  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>
 
 
