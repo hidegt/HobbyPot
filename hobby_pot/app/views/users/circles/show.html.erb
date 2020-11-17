@@ -3,18 +3,10 @@
     <%= render 'users/favorites/favorite', circle: @circle %>
   </div>
   <%= render 'common/circle_show', circle: @circle %>
-  
-  <%= render 'users/circles/comment_form', circle: @circle, comment: @comment %>
 
-  <% @circle.circle_comments.each do |circle_comment| %>
-
-    <%= circle_comment.user.name %></a></br>
-    <%= circle_comment.created_at.strftime('%Y/%m/%d') %></br>
-    <%= circle_comment.comment %></br>
-    <% if circle_comment.user == current_user %>
-      <%= link_to "削除", circle_circle_comment_path(circle_comment.circle, circle_comment), method: :delete, class: "btn btn-danger pull-right" %><br>
-    <% end %>
-
-  <% end %>
-
+  <!--コメント-->
+  <%= render 'users/circle_comments/comment_form', circle: @circle, comment: @comment %>
+  <div class="allcomments">
+    <%= render 'users/circle_comments/comment_all', circle: @circle, comment: @comment %>
+  </div>
 </div>

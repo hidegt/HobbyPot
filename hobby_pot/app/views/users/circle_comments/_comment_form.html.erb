@@ -1,4 +1,4 @@
-<%= form_with(model:[circle, comment], local: true) do |f| %>
+<%= form_with(model:[circle, comment], url: circle_circle_comments_path(circle.id), method: :post, remote: true) do |f| %>
   <div class="row justify-content-center">
     <div class="comment_area col-7">
       <%= f.text_area :comment, rows:'5', class: "form-control comment_p" ,placeholder: "コメントをここに" %>
