@@ -38,8 +38,28 @@
   </div>
 </div>
 <div id="lineup">
-  <div class="about-section">
-    <h2 class="about-title"><span class="top-border">Line up</span></h2>
+  <div class="lineup-section">
+    <h2 class="lineup-title"><span class="top-border">Line up</span></h2>
+    <div class="row justify-content-around lineup-row">
+        <% @circles.each do |circle| %>
+          <div class="card  text-center mx-3" style="width: 18rem;">
+            <%= attachment_image_tag circle, :image, size: "200x200", fallback: "no_image.jpg", class:"card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title border-bottom"><%= circle.circle_title %></h5>
+              <p class="card-text"><%= circle.circle_about %></p>
+            </div>
+            <div  class="card-body">
+              <%= link_to "詳細を見る",circle_path(circle.id),  class:"btn btn-radius-solid btn--shadow" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row justify-content-center pb-5">
+      <p class="p-3">この他にもたくさんサークルイベントがあります！<br>
+        <%= link_to "イベントをもっと見る→", circles_path, class:"mt-3 btn btn-outline-warning" %></p>
+      </div>
+    </div>
   </div>
 </div>
 <!--以下js専用-->
@@ -47,5 +67,4 @@
   'use strict'
   const main_p = document.querySelector('#main_p');
   main_p.animate([{opacity: '0'}, {opacity: '1'}], 2000);
-
 </script>
