@@ -13,14 +13,38 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
     <div id="wrapper">
+      <header>
+        <nav>
+          <ul class="nav justify-content-end">
+            <% if user_signed_in? %>
+              <li class="nav-item">ようこそ　<%= current_user.name %>さん</li>
+              <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id), class:"nav-link app-a" %></li>
+              <li class="nav-item"><%= link_to "イベント一覧", circles_path, class:"nav-link app-a" %></li>
+              <li class="nav-item"><a class="nav-link  app-a" href="#">参加履歴</a></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link app-a" %></li>
+            <% elsif leader_signed_in? %>
+              <li class="nav-item wc">ようこそ　<%= current_leader.circle_name %>　　<%= current_leader.name %>さん</li>
+              <li class="nav-item"><%= link_to "マイページ", leaders_leader_path(current_leader.id), class:"nav-link app-a" %></li>
+              <li class="nav-item"><%= link_to "サークル一覧", circles_path, class:"nav-link app-a" %></li>
+              <li class="nav-item"><%= link_to "イベント作成", new_leaders_circle_path, class:"nav-link app-a" %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_leader_session_path, method: :delete, class:"nav-link app-a" %></li>
+            <% else %>
+              <li class="nav-item app-li"><%= link_to 'About', root_path(anchor: 'about'), class: 'nav-link app-a' %></li>
+              <li class="nav-item app-li"><%= link_to 'Line Up', root_path(anchor: 'lineup'), class: 'nav-link app-a' %></li>
+              <li class="nav-item app-li"><%= link_to "サークルに参加する", new_user_registration_path, class:"nav-link app-a" %></li>
+              <li class="nav-item app-li"><%= link_to "サークルを作る", new_leader_registration_path, class:"nav-link app-a" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </header>
       <%= yield %>
       <span id="back">
-        <a href="#"><%= image_tag "btn.png", class:"btn-up" %></a>
+        <a href="#">
+          <%= image_tag "btn.png", class:"btn-up" %>
+        </a>
       </span>
     </div>
-  
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </body>
 </html>

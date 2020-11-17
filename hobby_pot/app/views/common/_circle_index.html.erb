@@ -1,6 +1,6 @@
 <% circles.each do |circle| %>
-  <div class="row row_zoom">
-    <div class="card my-3 mx-auto zoom" style="max-width: 800px;">
+  <div class="row">
+    <div class="card my-3 mx-auto" style="max-width: 800px;">
       <h5 class="card-header"><%= circle.circle_title %></h5>
       <div class="card-body">
         <div class="row no-gutters">
@@ -18,7 +18,37 @@
             </p>
             <p class="card-text offset-md-1"><i class="fas fa-sun"></i> 開催日: <%= circle.date_and_time.strftime('%Y/%m/%d %H:%M') %></p>
             <p class="card-text offset-md-1"><i class="fas fa-comments-dollar"></i> 参加費: <%= number_with_delimiter(circle.join_cost) + "円" %></p>
-            <%= render 'common/show_btn', c: circle %>
+            <!--サークル人数ーサークル参加人数にする-->
+            <% if user_signed_in? %>
+              <% if circle.number_people.to_i >= 10 %>
+                <%= link_to circle_path(circle) do %>
+                  <div class="btn btn-primary offset-md-8 text-center stretched-link">残席あります！<br>詳細をみる</div>
+                <% end %>
+              <% elsif circle.number_people.to_i >= 1 %>
+                <%= link_to circle_path(circle) do %>
+                  <div class="btn btn-warning offset-md-8 text-center stretched-link">残席残りわずか！<br>詳細をみる</div>
+                <% end %>
+              <% elsif circle.number_people.to_i >= 0 %>
+                <%= link_to circle_path(circle) do %>
+                  <div class="btn btn-danger text-right offset-md-8 text-center">満席です<br>詳細をみる</div>
+                <% end %>
+              <% end %>
+            
+            <% elsif leader_signed_in? %>
+              <% if circle.number_people.to_i >= 10 %>
+                <%= link_to  leaders_circle_path(circle) do %>
+                  <div class="btn btn-primary offset-md-8 text-center stretched-link">残席あります！<br>詳細をみる</div>
+                <% end %>
+              <% elsif circle.number_people.to_i >= 1 %>
+                <%= link_to  leaders_circle_path(circle) do %>
+                  <div class="btn btn-warning offset-md-8 text-center stretched-link">残席残りわずか！<br>詳細をみる</div>
+                <% end %>
+              <% elsif circle.number_people.to_i >= 0 %>
+                <%= link_to  leaders_circle_path(circle) do %>
+                  <div class="btn btn-danger text-right offset-md-8 text-center">満席です<br>詳細をみる</div>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

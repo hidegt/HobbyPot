@@ -1,4 +1,4 @@
-class AddColumnsToCircles < ActiveRecord::Migration[5.2]
+class AddColumnsToCircles2 < ActiveRecord::Migration[5.2]
   def change
     add_column :circles, :postcode, :string
     add_column :circles, :prefecture_code, :string
