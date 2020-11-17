@@ -46,5 +46,6 @@ Rails.application.routes.draw do
   end
 
   root to: 'users/circles#top'
+  
 
 end
