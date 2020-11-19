@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   namespace :leaders do
     #サークル
     resources :circles, only:[:new, :create, :edit, :update, :destroy]
+      post 'circles/confirm'
+      post 'circles/back'
     #マイページ
     resources :leaders, only:[:show, :edit, :update] do
       member do
@@ -41,8 +43,6 @@ Rails.application.routes.draw do
     end
     #サークル参加
     resources :join_circles, only: [:create, :index]
-    post 'join_circles/confirm' => 'join_circles#confirm', as: 'confirm'
-    get 'join_circles/thanks' => 'join_circles#thanks', as: 'thanks'
   end
 
   root to: 'users/circles#top'

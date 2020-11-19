@@ -1,9 +1,4 @@
 class Users::JoinCirclesController < ApplicationController
-  def confirm
-    @join_circle = current_user.join_circles.new(join_circle_params)
-    @join_circle.user_id = current_user.id
-  end
-
   def create
     @join_circle = current_user.join_circles.new(join_circle_params)
     if @join_circle.save!
@@ -13,8 +8,6 @@ class Users::JoinCirclesController < ApplicationController
 	  end
   end
 
-  def thanks
-  end
 
   def index
     @join_circle = current_user.join_circles

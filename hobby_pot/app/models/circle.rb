@@ -21,4 +21,12 @@ class Circle < ApplicationRecord
   def prefecture_name=(prefecture_name)
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
+  
+  def status
+    if circle_status
+     "公開する"
+    else
+      "非公開"
+    end
+  end
 end

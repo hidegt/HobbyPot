@@ -6,11 +6,30 @@ class Leaders::CirclesController < ApplicationController
     @circle = Circle.new
   end
 
-  def create
+  def back
+    @circle = Circle.new(session[:circle])
+    session.delete(:circle)
+    render :new
+  end
+
+  def confirm
+    # @circle = Circle.find_or_initialize_by(id: params[:id])
+    # session[:circle] = circle_params
+    # session[:image] = circle_params[:image]
+    # @circle.assign_attributes(session[:circle])
     @circle = Circle.new(circle_params)
+    session[:circle] = @circle
+    debugger
+  end
+
+  def create
+    @circle = Circle.new(session[:circle])
+    @circle.image = session[:image]
     @circle.leader_id = current_leader.id
+    debugger
     if @circle.save
-      redirect_to leaders_leader_path(current_leader)
+      session.delete(:circle)
+      redirect_to circle_path(@circle.leader_id)
     else
       render :new
     end
@@ -26,11 +45,12 @@ class Leaders::CirclesController < ApplicationController
      render :edit
     end
   end
-  # def destroy
-  #   @circle = Circle.find(params[:id])
-  #   @circle.destroy
-  #   redirect_to root_path
-  # end
+
+  def destroy
+    @circle = Circle.find(params[:id])
+    @circle.destroy
+    redirect_to root_path
+  end
 
   private
   def circle_params
