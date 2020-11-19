@@ -41,6 +41,10 @@
         <%= f.hidden_field :circle_id, value: @circle.id %>
         <%= f.submit "イベントに参加する", class: " btn btn-primary" %>
       <% end %>
+    <% elsif leader_signed_in?  %>
+      <% if circle.leader == current_leader %>
+        <%= link_to "編集する", edit_leaders_circle_path(circle), class:"btn btn-warning text-center" %>
+      <% end %>
     <% else %>
       <%= link_to "会員登録(無料)してイベントに参加する", new_user_registration_path, class:"btn btn-success" %>
     <% end %>

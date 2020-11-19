@@ -10,7 +10,7 @@ class Leaders::CirclesController < ApplicationController
     @circle = Circle.new(circle_params)
     @circle.leader_id = current_leader.id
     if @circle.save
-      redirect_to leaders_circles_path
+      redirect_to leaders_leader_path(current_leader)
     else
       render :new
     end
@@ -26,6 +26,11 @@ class Leaders::CirclesController < ApplicationController
      render :edit
     end
   end
+  # def destroy
+  #   @circle = Circle.find(params[:id])
+  #   @circle.destroy
+  #   redirect_to root_path
+  # end
 
   private
   def circle_params

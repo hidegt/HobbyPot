@@ -1,6 +1,4 @@
-<!--住所入力部未完成-->
 <div class="container">
-
 <%= form_with model:@circle,url:leaders_circles_path(@circle), local:true do |f| %>
   <% if @circle.errors.any? %>
     <%= @circle.errors.count %>件のエラーが発生しました
@@ -8,37 +6,38 @@
       <%= message %>
     <% end %>
   <% end %>
-<div class="form-row mt-5 border border-warning shadow p-3 mb-5 bg-white rounded">
+<div class="circle_form">
+  <h2 class="circle_form_title">新規投稿</h2>
   <div class="form-group col-md-6">
   <%= f.attachment_field :image %>
   </div>
-  <div class="form-group col-md-6">
+  <div class="field">
     <%= f.label :サークル名, class:"label" %>
-    <%= f.text_field :circle_title, class:"form-control" %>
+    <%= f.text_field :circle_title,class:"form_font" %>
   </div>
-  <div class="form-group col-md-6">
+  <div class="field">
     <%= f.label :開催日時, class:"label" %>
-    <%= f.datetime_field :date_and_time, class:"form-control col-md-5" %>
+    <%= f.datetime_field :date_and_time, class:"form_font" %>
   </div>
-  <div class="form-group col-md-6">
+  <div class="field">
     <%= f.label :サークルについて, class:"label" %>
-    <%= f.text_area :circle_about, class:"form-control" %>
+    <%= f.text_area :circle_about, class:"form_font" %>
   </div>
-  <div  class="form-group col-md-6">
+  <div  class="field">
     <%= f.label :参加費, class:"label" %>
-    <%= f.text_field :join_cost, class:"form-control col-md-4" %>
+    <%= f.text_field :join_cost, class:"form_font" %>
   </div>
-  <div  class="form-group col-md-6">
+  <div  class="field">
     <%= f.label :当日のスケジュール, class:"label" %>
-    <%= f.text_area :schedule, class:"form-control" %>
+    <%= f.text_area :schedule, class:"form_font" %>
   </div>
-  <div  class="form-group col-md-6">
+  <div  class="field">
     <%= f.label :募集人数, class:"label" %>
-    <%= f.text_field :number_people, class:"form-control col-md-4" %>
+    <%= f.text_field :number_people, class:"form_font" %>
   </div>
-  <div  class="form-group col-md-6">
+  <div  class="field">
     <%= f.label :当日用意するもの, class:"label" %>
-    <%= f.text_area :prepare, class:"form-control" %>
+    <%= f.text_area :prepare, class:"form_font" %>
   </div>
   
   <h2>Your address</h2>

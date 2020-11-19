@@ -310,7 +310,8 @@ a.btn-radius-solid:hover {
 }
 // ===ユーザーとリーダーのログイン画面===
 // login
-.login_form{
+// ＊サークル投稿、編集も兼用
+.login_form,.circle_form{
   background: #fff;
   border-radius: 6px;
   padding: 20px;
@@ -319,7 +320,7 @@ a.btn-radius-solid:hover {
   margin: 50px auto;
   box-shadow: 20px 20px 0px rgba(0,0,0,.1);
 }
-.login_title{
+.login_title,.circle_form_title{
   text-align: center;
   font-size: 1.4em;
   font-weight: 700;
@@ -381,6 +382,36 @@ a.btn-radius-solid:hover {
   background: #fa631d;
 }
 // マイページ関連
+// 自己紹介
+.info_box{
+  position: relative;
+  padding: 0.25em 1em;
+  background: #fff;
+}
+.info_box:before, .info_box:after{
+  content:'';
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+}
+.info_box:before {
+  border-left: solid 1px #5767bf;
+  border-top: solid 1px #5767bf;
+  top: 0;
+  left: 0;
+}
+.info_box:after {
+  border-right: solid 1px #5767bf;
+  border-bottom: solid 1px #5767bf;
+  bottom: 0;
+  right: 0;
+}
+.info_box p {
+    margin: 0px;
+    padding: 0;
+}
+// 退会
 .taikai,.log_url {
   text-align:center;
   padding:20px;
@@ -415,4 +446,3 @@ a.btn-radius-solid:hover {
   height: 7px;
   background: repeating-linear-gradient(-45deg, #3640ff, #3640ff 2px, white 2px, white 4px);
 }
-
