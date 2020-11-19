@@ -1,59 +1,83 @@
 <div class="container">
-<%= form_with model:@circle,url:leaders_circles_path(@circle), local:true do |f| %>
-  <% if @circle.errors.any? %>
-    <%= @circle.errors.count %>件のエラーが発生しました
-    <% @circle.errors.full_messages.each do |message| %>
-      <%= message %>
+  <div class="row justify-content-center m-3 p-3">
+    <h1 class="top-border">新規投稿<h1>
+  </div>
+  <div class="row justify-content-center">
+    <%= form_with model:@circle,url:leaders_circles_path(@circle), local:true do |f| %>
+      <% if @circle.errors.any? %>
+        <%= @circle.errors.count %>件のエラーが発生しました
+        <% @circle.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
     <% end %>
-  <% end %>
-<div class="circle_form">
-  <h2 class="circle_form_title">新規投稿</h2>
-  <div class="form-group col-md-6">
-  <%= f.attachment_field :image %>
+      <table class="circle_t">
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :image, "写真", class:"fas fa-image" %></th>
+          <td class="circle_td"><%= f.attachment_field :image %></td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :circle_title, "イベント名", class:"fas fa-file-signature" %></th>
+          <td class="circle_td"><%= f.text_field :circle_title,class:"circle_form_font" %></td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :date_and_time, "開催予定日", class:"fas fa-sun" %></th>
+          <td class="circle_td"><%= f.datetime_field :date_and_time, class:"circle_form_font" %></td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :circle_about, "イベントについて", class:"fas fa-pencil-alt" %></th>
+          <td class="circle_td"><%= f.text_area :circle_about, class:"circle_form_font" %></td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :join_cost, "参加費", class:"fas fa-comments-dollar" %></th>
+          <td class="circle_td"><%= f.text_field :join_cost, class:"circle_form_font" %><span class="input-group-addon pl-2 pr-1">円</span></td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :schedule, "当日のスケジュール", class:"fas fa-clock" %></th>
+          <td class="circle_td"><%= f.text_area :schedule, class:"circle_form_font" %></td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :number_people, "募集人数", class:"fas fa-users" %></th>
+          <td class="circle_td"><%= f.text_field :number_people, class:"circle_form_font" %><span class="input-group-addon pl-2 pr-1">人</span></td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :prepare, "当日用意するもの", class:"fas fa-shopping-bag" %></th>
+          <td class="circle_td"><%= f.text_area :prepare, class:"circle_form_font" %></td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :開催地, class:"fas fa-bus-alt" %></th>
+          <td class="circle_td">
+            <div class="form-row  pl-4">
+              <%= f.label :postcode,"郵便番号", class:"col-sm-2" %>
+              <%= f.text_field :postcode, class:"circle_form_font col-sm-4" %>
+            </div>
+            <div class="form-row pl-4">
+              <%= f.label :prefecture_code, "都道府県", class:"col-sm-2" %>
+              <%= f.text_field :prefecture_code, collection: JpPrefecture::Prefecture.all, :value_method => :name, include_blank: '都道府県', class:"circle_form_font col-sm-3" %>
+              <%= f.label :address_city, "市区町村", class:"col-sm-2 offset-sm-1" %>
+              <%= f.text_field :address_city, class:"circle_form_font col-sm-3" %>
+            </div>
+            <div class="form-row pl-4">
+              <%= f.label :address_street, "番地", class:"col-sm-2" %>
+              <%= f.text_field :address_street, class:"circle_form_font col-sm-9" %>
+            </div>
+            <div class="form-row pl-4">
+              <%= f.label :address_building, "建物", class:"col-sm-2" %>
+              <%= f.text_field :address_building, class:"circle_form_font col-sm-9" %>
+            </div>
+          </td>
+        </tr>
+        <tr class="circle_tr">
+          <th class="circle_th"><%= f.label :circle_status, "公開設定", class:"fas fa-unlock-alt" %></th>
+          <td class="circle_td">
+            <div class="form-row pl-4">
+              <%= f.select :circle_status, [["公開する", true], ["非公開", false]], { include_blank: "--選択して下さい--" }, { class: "circle_form_font" } %>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :サークル名, class:"label" %>
-    <%= f.text_field :circle_title,class:"form_font" %>
-  </div>
-  <div class="field">
-    <%= f.label :開催日時, class:"label" %>
-    <%= f.datetime_field :date_and_time, class:"form_font" %>
-  </div>
-  <div class="field">
-    <%= f.label :サークルについて, class:"label" %>
-    <%= f.text_area :circle_about, class:"form_font" %>
-  </div>
-  <div  class="field">
-    <%= f.label :参加費, class:"label" %>
-    <%= f.text_field :join_cost, class:"form_font" %>
-  </div>
-  <div  class="field">
-    <%= f.label :当日のスケジュール, class:"label" %>
-    <%= f.text_area :schedule, class:"form_font" %>
-  </div>
-  <div  class="field">
-    <%= f.label :募集人数, class:"label" %>
-    <%= f.text_field :number_people, class:"form_font" %>
-  </div>
-  <div  class="field">
-    <%= f.label :当日用意するもの, class:"label" %>
-    <%= f.text_area :prepare, class:"form_font" %>
-  </div>
-  
-  <h2>Your address</h2>
-  <p>zip code</p>
-  <%= f.text_field :postcode %>
-  <p>prefecture</p>
-  <%= f.text_field :prefecture_code, collection: JpPrefecture::Prefecture.all, :value_method => :name, include_blank: '都道府県' %><br>
-  <p>city</p>
-  <%= f.text_field :address_city %>
-  <p>street</p>
-  <%= f.text_field :address_street %>
-  <p>builbding name</p>
-  <%= f.text_field :address_building %>
-
-  <div class="actions">
-  
-  <%= f.submit %>
-<% end %>
 </div>

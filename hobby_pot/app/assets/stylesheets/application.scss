@@ -264,21 +264,20 @@ a.btn-radius-solid:hover {
   border-bottom: none;
   text-decoration: none;
 }
-// circle confirm
-.confirm_t{
+// circle new&edit
+
+// circle new&edit&confirm
+.circle_t{
   width: 100%;
   border-collapse: collapse;
 }
-
-.confirm_t .confirm_tr{
-  border-bottom: solid 2px white;
+.circle_t .circle_tr{
+  border-bottom: solid 2px #f5f5f5;
 }
-
-.confirm_t .confirm_tr:last-child{
+.circle_t .circle_tr:last-child{
   border-bottom: none;
 }
-
-.confirm_t .confirm_th{
+.circle_t .circle_th{
   position: relative;
   text-align: left;
   width: 30%;
@@ -287,8 +286,7 @@ a.btn-radius-solid:hover {
   text-align: center;
   padding: 10px 0;
 }
-
-.confirm_t .confirm_th:after{
+.circle_t .circle_th:after{
   display: block;
   content: "";
   width: 0px;
@@ -300,13 +298,22 @@ a.btn-radius-solid:hover {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
-
-.confirm_t .confirm_td{
+.circle_t .circle_td{
   text-align: left;
   width: 70%;
   text-align: center;
   background-color: #eee;
   padding: 10px 0;
+  background: #fff;
+}
+.circle_form_font{
+  width: 90%;
+  background: #f5f5f5;
+  border: 0;
+  padding: 5px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  border: 1px solid #eee;
 }
 // ===ユーザーとリーダーのログイン画面===
 // login
@@ -320,7 +327,7 @@ a.btn-radius-solid:hover {
   margin: 50px auto;
   box-shadow: 20px 20px 0px rgba(0,0,0,.1);
 }
-.login_title,.circle_form_title{
+.login_title{
   text-align: center;
   font-size: 1.4em;
   font-weight: 700;
@@ -408,7 +415,7 @@ a.btn-radius-solid:hover {
   right: 0;
 }
 .info_box p {
-    margin: 0px;
+    margin: 25px;
     padding: 0;
 }
 // 退会

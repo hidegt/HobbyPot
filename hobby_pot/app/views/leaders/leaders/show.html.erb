@@ -6,8 +6,8 @@
     <div class="col-md-2 align-self-start">
       <div class="text-center mb-2"><%= attachment_image_tag @leader, :leader_image, size: "200x200",class:"rounded-circle img-fluid border border-dark", fallback: "no-image-icon.jpg" %></div>
       <h3 class="user_info text-center mb-2"><%= @leader.name %></h3>
-    	<div class="info_box">
-    		<p><%= safe_join(@leader.introduction.split("\n"),tag(:br)) %></p>
+    	<div class="info_box mb-3">
+    		<p><%= simple_format(h(@leader.introduction)) %></p>
     	</div>
       <% if @leader.id == current_leader.id %>
     	<div class="row">
