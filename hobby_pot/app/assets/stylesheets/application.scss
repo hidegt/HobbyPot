@@ -415,8 +415,8 @@ a.btn-radius-solid:hover {
   right: 0;
 }
 .info_box p {
-    margin: 25px;
-    padding: 0;
+  margin: 25px;
+  padding: 0;
 }
 // 退会
 .taikai,.log_url {
@@ -452,4 +452,40 @@ a.btn-radius-solid:hover {
   width: 100%;
   height: 7px;
   background: repeating-linear-gradient(-45deg, #3640ff, #3640ff 2px, white 2px, white 4px);
+}
+.hidden_box{
+  margin: 40px;
+  padding: 0;
+}
+.user_show{
+  margin: 40px;
+}
+.user_title{
+  position: relative;
+  padding: 0.25em 0;
+}
+.user_title:after{
+  content: "";
+  display: block;
+  height: 4px;
+  background: -webkit-linear-gradient(to right, rgb(230, 90,90), transparent);
+  background: linear-gradient(to right, rgb(230, 90,90), transparent);
+}
+.btn_flat_horizontal_border{
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background: #ff7f7f;
+  transition: 4s;
+}
+.btn_flat_horizontal_border > span{
+  border-bottom: solid 2px #fff;
+  border-top: solid 2px #fff;
+}
+.btn_flat_horizontal_border:hover span{
+  padding: 0.1em 0;
+  text-decoration: none;
 }

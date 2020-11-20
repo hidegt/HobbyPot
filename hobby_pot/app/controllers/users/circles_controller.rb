@@ -13,7 +13,7 @@ class Users::CirclesController < ApplicationController
     @join_circle = JoinCircle.new
   end
   
-  def bookmarks
-    @circles = current_user.fav_circles.includes(:user)
-  end
+  # def bookmarks
+  #   @circles = current_user.fav_circles.includes(:user)
+  # end
 end

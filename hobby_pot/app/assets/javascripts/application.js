@@ -29,7 +29,7 @@ $(document).ready(function() {
 });
 // 退会へのボタン
 $(document).ready(function(){
-   $('.taikai').on('click',function(){
-      $('.social').stop().slideToggle();
+   $('.hidden_box').on('click',function(){
+      $('.hidden_show').stop().slideToggle();
    });
 })

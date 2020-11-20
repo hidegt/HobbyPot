@@ -1,27 +1,23 @@
-<% circles.each do |circle| %>
-  <div class="row row_zoom">
-    <div class="card my-3 mx-auto zoom" style="max-width: 800px;">
-      <h5 class="card-header"><%= circle.circle_title %></h5>
-      <div class="card-body">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <%= attachment_image_tag circle, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>
-          </div>
-          <div class="col-md-8">
-            <p class="card-text offset-md-1">
-              <i class="fas fa-pencil-alt"></i>
-              <%= safe_join(circle.circle_about.split("\n"),tag(:br)) %>
-            </p>
-            <p class="card-text offset-md-1">
-              <i class="fas fa-bus-alt"></i> 場所:
-              <%= circle.prefecture_code%><%= circle.address_city %><%= circle.address_street %><%= circle.address_building %>
-            </p>
-            <p class="card-text offset-md-1"><i class="fas fa-sun"></i> 開催日: <%= circle.date_and_time.strftime('%Y/%m/%d %H:%M') %></p>
-            <p class="card-text offset-md-1"><i class="fas fa-comments-dollar"></i> 参加費: <%= number_with_delimiter(circle.join_cost) + "円" %></p>
-            <%= render 'common/show_btn', c: circle %>
-          </div>
-        </div>
+<div class="card my-3 mx-auto zoom" style="max-width: 800px;">
+  <h5 class="card-header"><%= circle.circle_title %></h5>
+  <div class="card-body">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <%= attachment_image_tag circle, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>
+      </div>
+      <div class="col-md-8">
+        <p class="card-text offset-md-1">
+          <i class="fas fa-pencil-alt"></i>
+          <%= safe_join(circle.circle_about.split("\n"),tag(:br)) %>
+        </p>
+        <p class="card-text offset-md-1">
+          <i class="fas fa-bus-alt"></i> 場所:
+          <%= circle.prefecture_code%><%= circle.address_city %><%= circle.address_street %><%= circle.address_building %>
+        </p>
+        <p class="card-text offset-md-1"><i class="fas fa-sun"></i> 開催日: <%= circle.date_and_time.strftime('%Y/%m/%d %H:%M') %></p>
+        <p class="card-text offset-md-1"><i class="fas fa-comments-dollar"></i> 参加費: <%= number_with_delimiter(circle.join_cost) + "円" %></p>
+        <%= render 'common/show_btn', c: circle %>
       </div>
     </div>
   </div>
-<% end %>
+</div>

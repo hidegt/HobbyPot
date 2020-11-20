@@ -3,7 +3,8 @@ class Users::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :unsubscribe, :withdraw]
   def show
     @user = User.find(params[:id])
-    @join_circle = current_user.j_circles.includes(:user)
+    @join_circles = current_user.j_circles.includes(:user)
+    @bookmarks = current_user.fav_circles.includes(:user)
   end
 
   def edit

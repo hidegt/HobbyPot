@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     #サークル
     resources :circles, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
-      get 'bookmarks',on: :collection
+      # get 'bookmarks',on: :collection
       resource :join_circles, only: [:create,:destroy]
       resources :circle_comments, only:[:create, :destroy]
     end

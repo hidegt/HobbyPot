@@ -11,12 +11,14 @@
     	</div>
       <% if @leader.id == current_leader.id %>
     	<div class="row">
-    	  <%= link_to "プロフィール編集", edit_leaders_leader_path(current_leader.id) %>
+    	  <%= link_to edit_leaders_leader_path(current_leader.id), class:"btn_flat_horizontal_border" do %>
+    	    <span>プロフィール編集</span>
+    	  <% end %>
     	</div>
       <% end %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h2 class="circle">イベント一覧</h2>
+      <h3 class="text-center user_title">イベント一覧</h3>
       <%= render 'common/circle_index', circles: @circles %>
     </div>
   </div>

@@ -1,7 +1,6 @@
 class Circle < ApplicationRecord
   attachment :image
   belongs_to :leader
-  belongs_to :user
   #お気に入り
   has_many :favorites, dependent: :destroy
   def favorited_by?(user)
