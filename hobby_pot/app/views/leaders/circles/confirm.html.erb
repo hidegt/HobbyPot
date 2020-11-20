@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row justify-content-center m-3 p-3">
+    <h1 class="top-border">入力内容確認<h1>
+  </div>
+  <div class="row justify-content-center m-3 p-3">
+    <p>以下の内容でサークルイベントを投稿致します。</p>
+  </div>
+  <div class="row justify-content-center mx-5">
+  <table class="circle_t mx-5">
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-image"></i>写真</th>
+    <td class="circle_td"><%= attachment_image_tag @circle, :image, size: "500x500", fallback: "no_image.jpg", class:"mx-auto" %></td>
+  </tr>
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-file-signature"></i>イベント名</th>
+    <td class="circle_td"><%= @circle.circle_title %></td>
+  </tr>
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-sun"></i>開催予定日</th>
+    <td class="circle_td"><%= @circle.date_and_time.strftime('%Y/%m/%d %H:%M') %></td>
+  </tr>
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-sun"></i>イベントについて</th>
+    <td class="circle_td"><%= simple_format(h(@circle.circle_about)) %></td>
+  </tr>
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-clock"></i>当日のスケジュール</th>
+    <td class="circle_td"><%= simple_format(h(@circle.schedule)) %></td>
+  </tr>
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-shopping-bag"></i>当日用意するもの</th>
+    <td class="circle_td"><%= simple_format(h(@circle.prepare)) %></td>
+  </tr>
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-comments-dollar"></i>参加費</th>
+    <td class="circle_td"><%= number_with_delimiter(@circle.join_cost) + "円" %></td>
+  </tr>
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-users"></i>募集人数</th>
+    <td class="circle_td"><%= @circle.number_people + "人" %></td>
+  </tr>
+  <tr class="circle_tr">
+    <th class="circle_th"><i class="fas fa-bus-alt"></i>開催地</th>
+    <td class="circle_td"><%= @circle.postcode%><br><%= @circle.prefecture_code %><%= @circle.address_city %><%= @circle.address_street %><br><%= @circle.address_building %></td>
+  </tr>
+</table>
+</div>
+<%= form_with model: @circle, url: leaders_circles_path, local: true do |f| %>
+  <%= f.submit "確定する", class:"signup_btn" %>
+  <%= f.hidden_field :image, :value => circle_params[:image] %>
+<% end %>
+<%= form_with model: @circle,method: :post, url: leaders_circles_back_path, local: true do |f| %>
+  <%= f.hidden_field :image, :value => circle_params[:image] %>
+  <%= f.submit "入力画面に戻る", class:"signup_btn" %>
+<% end %>
+</div>

@@ -264,21 +264,20 @@ a.btn-radius-solid:hover {
   border-bottom: none;
   text-decoration: none;
 }
-// circle confirm
-.confirm_t{
+// circle new&edit
+
+// circle new&edit&confirm
+.circle_t{
   width: 100%;
   border-collapse: collapse;
 }
-
-.confirm_t .confirm_tr{
-  border-bottom: solid 2px white;
+.circle_t .circle_tr{
+  border-bottom: solid 2px #f5f5f5;
 }
-
-.confirm_t .confirm_tr:last-child{
+.circle_t .circle_tr:last-child{
   border-bottom: none;
 }
-
-.confirm_t .confirm_th{
+.circle_t .circle_th{
   position: relative;
   text-align: left;
   width: 30%;
@@ -287,8 +286,7 @@ a.btn-radius-solid:hover {
   text-align: center;
   padding: 10px 0;
 }
-
-.confirm_t .confirm_th:after{
+.circle_t .circle_th:after{
   display: block;
   content: "";
   width: 0px;
@@ -300,17 +298,27 @@ a.btn-radius-solid:hover {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
-
-.confirm_t .confirm_td{
+.circle_t .circle_td{
   text-align: left;
   width: 70%;
   text-align: center;
   background-color: #eee;
   padding: 10px 0;
+  background: #fff;
+}
+.circle_form_font{
+  width: 90%;
+  background: #f5f5f5;
+  border: 0;
+  padding: 5px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  border: 1px solid #eee;
 }
 // ===ユーザーとリーダーのログイン画面===
 // login
-.login_form{
+// ＊サークル投稿、編集も兼用
+.login_form,.circle_form{
   background: #fff;
   border-radius: 6px;
   padding: 20px;
@@ -381,6 +389,36 @@ a.btn-radius-solid:hover {
   background: #fa631d;
 }
 // マイページ関連
+// 自己紹介
+.info_box{
+  position: relative;
+  padding: 0.25em 1em;
+  background: #fff;
+}
+.info_box:before, .info_box:after{
+  content:'';
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+}
+.info_box:before {
+  border-left: solid 1px #5767bf;
+  border-top: solid 1px #5767bf;
+  top: 0;
+  left: 0;
+}
+.info_box:after {
+  border-right: solid 1px #5767bf;
+  border-bottom: solid 1px #5767bf;
+  bottom: 0;
+  right: 0;
+}
+.info_box p {
+    margin: 25px;
+    padding: 0;
+}
+// 退会
 .taikai,.log_url {
   text-align:center;
   padding:20px;
@@ -415,4 +453,3 @@ a.btn-radius-solid:hover {
   height: 7px;
   background: repeating-linear-gradient(-45deg, #3640ff, #3640ff 2px, white 2px, white 4px);
 }
-

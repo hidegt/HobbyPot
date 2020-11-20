@@ -14,7 +14,13 @@
       <div class="btn btn-danger text-right offset-md-8 text-center">満席です<br>詳細をみる</div>
     <% end %>
   <% end %>
-
+  
+<% elsif leader_signed_in? %>
+  <%= link_to "詳細をみる", circle_path(c), class:"btn btn-primary offset-4 text-center" %>
+  <% if c.leader == current_leader %>
+    <%= link_to "編集する", edit_leaders_circle_path(c), class:"btn btn-warning offset-2 text-center" %>
+  <% end %>
+  
 <% else %>
-  <%= link_to "詳細をみる", circle_path(c), class:"btn btn-primary offset-md-8 text-center stretched-link" %>
+  <%= link_to "詳細をみる", circle_path(c), class:"btn btn-primary offset-md-8 text-center" %>
 <% end %>
