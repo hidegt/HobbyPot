@@ -1,21 +1,18 @@
 class Users::JoinCirclesController < ApplicationController
+  before_action :set_join
   def create
-    @join_circle = current_user.join_circles.new(join_circle_params)
-    if @join_circle.save!
-      redirect_to :thanks
-	  else
-		  render root_path
-	  end
+    join_circle = current_user.join_circles.build(circle_id: params[:circle_id])
+    join_circle.save!
+    redirect_to request.referer
   end
-
-
-  def index
-    @join_circle = current_user.join_circles
+  
+  def destroy
+    current_user.join_circles.find_by(circle_id: params[:circle_id]).destroy!
   end
 
   private
-  def join_circle_params
-    params.require(:join_circle).permit(:user_id, :circle_id)
+  def set_join
+    @circle = Circle.find(params[:circle_id])
   end
 
 end

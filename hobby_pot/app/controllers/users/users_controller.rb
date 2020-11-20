@@ -3,6 +3,7 @@ class Users::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :unsubscribe, :withdraw]
   def show
     @user = User.find(params[:id])
+    @join_circle = current_user.j_circles.includes(:user)
   end
 
   def edit
@@ -24,7 +25,7 @@ class Users::UsersController < ApplicationController
     reset_session
     redirect_to root_path
   end
-
+  
   private
   def if_not_current_user
     @user = User.find(params[:id])

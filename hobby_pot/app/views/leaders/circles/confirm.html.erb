@@ -46,8 +46,8 @@
 </table>
 </div>
 <%= form_with model: @circle, url: leaders_circles_path, local: true do |f| %>
-  <%= f.submit "確定する", class:"signup_btn" %>
   <%= f.hidden_field :image, :value => circle_params[:image] %>
+  <%= f.submit "確定する", class:"signup_btn" %>
 <% end %>
 <%= form_with model: @circle,method: :post, url: leaders_circles_back_path, local: true do |f| %>
   <%= f.hidden_field :image, :value => circle_params[:image] %>
