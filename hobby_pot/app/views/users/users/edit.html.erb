@@ -20,8 +20,8 @@
     <%= f.submit "更新する", class:"signup_btn" %>
   </div>
 <% end %>
-<h6 class="taikai">退会を希望しますか？</h6>
-  <div class="social">
+<h6 class="hidden_box taikai">退会を希望しますか？</h6>
+  <div class="hidden_show social">
     <%= link_to "退会する", unsubscribe_user_path(current_user.id), class:"btn btn-primary taikai_btn my-auto" %>
   </div>
 </div>

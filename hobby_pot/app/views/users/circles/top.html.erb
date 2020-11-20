@@ -42,16 +42,7 @@
     <h2 class="lineup-title"><span class="top-border">Line up</span></h2>
     <div class="row justify-content-around lineup-row">
         <% @circles.each do |circle| %>
-          <div class="card  text-center mx-3" style="width: 18rem;">
-            <%= attachment_image_tag circle, :image, size: "200x200", fallback: "no_image.jpg", class:"card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title border-bottom"><%= circle.circle_title %></h5>
-              <p class="card-text"><%= circle.circle_about %></p>
-            </div>
-            <div  class="card-body">
-              <%= link_to "詳細を見る",circle_path(circle.id),  class:"btn btn-radius-solid btn--shadow" %>
-            </div>
-          </div>
+          <%= render 'common/circle_top', circle: circle %>
         <% end %>
       </div>
     </div>

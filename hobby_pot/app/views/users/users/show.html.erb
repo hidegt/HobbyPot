@@ -7,47 +7,45 @@
     <% end %>
   </div>
   <div class="row mt-5">
-    <div class="col-md-4">
-      <h2 class="user_info">プロフィール</h2>
-      <table class="table">
-      	<tr><%= attachment_image_tag @user, :user_image, size: "200x200", fallback: "no-image-icon.jpg" %></tr>
-      	<tr>
-      		<th><%= @user.name %></th>
-      	</tr>
-      	<tr>
-      	  <th>都道府県</th>
-      		<td><%= @user.prefecture.name %></td>
-      	</tr>
-      	<tr>
-      		<th>自己紹介</th>
-      		<td><%= @user.introduction %></td>
-      	</tr>
-      </table>
+    <div class="col-md-2 align-self-start">
+      <div class="text-center mb-2"><%= attachment_image_tag @user, :user_image, size: "200x200",class:"rounded-circle img-fluid border border-dark", fallback: "no-image-icon.jpg" %></div>
+      <h3 class="user_info text-center mb-2"><%= @user.name %></h3>
+    	<div class="info_box mb-3">
+    		<p><%= simple_format(h(@user.introduction)) %></p>
+      </div>
       <% if @user.id == current_user.id %>
       	<div class="row">
-      	  <%= link_to "プロフィール編集", edit_user_path(@user) %>
+      	  <%= link_to edit_user_path(current_user.id), class:"btn_flat_horizontal_border" do %>
+    	      <span>プロフィール編集</span>
+    	    <% end %>
       	</div>
       <% end %>
-      <div class="row">
-        <%= link_to "お気に入り一覧", bookmarks_circles_path %>
-      </div>
     </div>
-    <div class="col-md-8">
-      <h2 class="join_circle">参加サークル</h2>
-      <!--% @join_circle.each do |j| %>-->
-        <div class="card bg-dark text-white">
-          <!--%= attachment_image_tag j, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>-->
-          <img src="..." class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <!--%= j.circle_name, class:"card-title" %>-->
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <!--%= j.circle_introduction, class:"card-text" %>-->
-            <p class="card-text">Last updated 3 mins ago</p>
-          </div>
+    <div class="col-md-8 offset-md-1">
+      <h3 class="text-center user_title">参加イベント一覧</h3>
+      <% current_user.j_circles.each do |circle| %>
+        <div class="row row_zoom">
+          <%= render 'common/circle_index', circle: circle %>
         </div>
-      <!--% end %>-->
+      <% end %>
+      <div class="user_show">
+        <h4 class="text-center hidden_box user_title">お気に入り一覧</h4>
+        <div class="hidden_show">
+          <% current_user.fav_circles.each do |circle| %>
+            <div class="row row_zoom">
+              <%= render 'common/circle_top', circle: circle %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!--<div class="hidden_box">-->
+      <!--  <h4 class="text-center">閲覧履歴</h4>-->
+        <!--% current_user.j_circles.each do |circle| %>-->
+          <!--<div class="row row_zoom">-->
+            <!--%= render 'common/circle_index', circle: circle %>-->
+          <!--</div>-->
+        <!--% end %>-->
+      </div>
     </div>
   </div>
 </div>
-

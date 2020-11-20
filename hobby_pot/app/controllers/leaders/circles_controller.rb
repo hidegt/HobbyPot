@@ -15,18 +15,16 @@ class Leaders::CirclesController < ApplicationController
   def confirm
     @circle = Circle.find_or_initialize_by(id: params[:id])
     session[:circle] = circle_params
-    @circle.image_id = session[:image]
     @circle.assign_attributes(session[:circle])
-    # @circle = Circle.new(circle_params)
-    # session[:circle] = @circle
-    debugger
+    session[:image] = @circle.image.id
+    # debugger
   end
 
   def create
     @circle = Circle.new(session[:circle])
-    @circle.image = session[:image]
+    @circle.image_id = session[:image]
     @circle.leader_id = current_leader.id
-    debugger
+    # debugger
     if @circle.save
       session.delete(:circle)
       redirect_to circle_path(@circle.leader_id)

@@ -47,9 +47,6 @@ ActiveRecord::Schema.define(version: 2020_11_13_033109) do
     t.integer "circle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["circle_id"], name: "index_favorites_on_circle_id"
-    t.index ["user_id", "circle_id"], name: "index_favorites_on_user_id_and_circle_id", unique: true
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "join_circles", force: :cascade do |t|
