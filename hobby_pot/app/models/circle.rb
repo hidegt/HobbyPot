@@ -1,7 +1,7 @@
 class Circle < ApplicationRecord
   attachment :image
   belongs_to :leader
-
+  belongs_to :user
   #お気に入り
   has_many :favorites, dependent: :destroy
   def favorited_by?(user)
@@ -10,7 +10,10 @@ class Circle < ApplicationRecord
   #コメント
   has_many :circle_comments, dependent: :destroy
   #参加
-  has_many :join_circles
+  has_many :join_circles, dependent: :destroy
+  def joined_by?(user)
+    join_circles.where(user_id: user.id).exists?
+  end
 
   # 住所自動入力
   include JpPrefecture

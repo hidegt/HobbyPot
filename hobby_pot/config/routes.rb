@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     #サークル
     resources :circles, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
-      get 'bookmarks', on: :collection
+      get 'bookmarks',on: :collection
+      resource :join_circles, only: [:create,:destroy]
       resources :circle_comments, only:[:create, :destroy]
     end
     #マイページ
@@ -41,8 +42,6 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
-    #サークル参加
-    resources :join_circles, only: [:create, :index]
   end
 
   root to: 'users/circles#top'

@@ -13,12 +13,12 @@ class Leaders::CirclesController < ApplicationController
   end
 
   def confirm
-    # @circle = Circle.find_or_initialize_by(id: params[:id])
-    # session[:circle] = circle_params
-    # session[:image] = circle_params[:image]
-    # @circle.assign_attributes(session[:circle])
-    @circle = Circle.new(circle_params)
-    session[:circle] = @circle
+    @circle = Circle.find_or_initialize_by(id: params[:id])
+    session[:circle] = circle_params
+    @circle.image_id = session[:image]
+    @circle.assign_attributes(session[:circle])
+    # @circle = Circle.new(circle_params)
+    # session[:circle] = @circle
     debugger
   end
 

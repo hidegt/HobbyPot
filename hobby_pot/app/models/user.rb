@@ -15,7 +15,7 @@ class User < ApplicationRecord
   #コメント
   has_many :circle_comments, dependent: :destroy
   #参加
-  has_many :join_circles
-  
+  has_many :join_circles, dependent: :destroy
+  has_many :j_circles, through: :join_circles, source: :circle
   attachment :user_image
 end
