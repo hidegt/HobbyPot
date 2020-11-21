@@ -4,6 +4,7 @@ class Leaders::LeadersController < ApplicationController
   def show
     @leader = Leader.find(params[:id])
     @circles = @leader.circles
+    @circle_category = @circles.categories
   end
 
   def edit
