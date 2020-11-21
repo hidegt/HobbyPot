@@ -3,7 +3,7 @@
     <h1 class="top-border">新規投稿<h1>
   </div>
   <div class="row justify-content-center">
-    <%= form_with model: @circle, url: leaders_circles_confirm_path, method: :post, local:true do |f| %>
+    <%= form_with model: @circle, url: leaders_circles_path(@circle), method: :post, local:true do |f| %>
       <% if @circle.errors.any? %>
         <%= @circle.errors.count %>件のエラーが発生しました
         <% @circle.errors.full_messages.each do |message| %>
