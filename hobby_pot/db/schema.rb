@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_033109) do
+ActiveRecord::Schema.define(version: 2020_11_21_050059) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_name"], name: "index_categories_on_category_name", unique: true
+  end
+
+  create_table "circle_categories", force: :cascade do |t|
+    t.integer "circle_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_circle_categories_on_category_id"
+    t.index ["circle_id", "category_id"], name: "index_circle_categories_on_circle_id_and_category_id", unique: true
+    t.index ["circle_id"], name: "index_circle_categories_on_circle_id"
+  end
 
   create_table "circle_comments", force: :cascade do |t|
     t.text "comment"
@@ -45,6 +62,12 @@ ActiveRecord::Schema.define(version: 2020_11_13_033109) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "circle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "image_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
