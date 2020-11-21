@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   #リーダー側ルート
   namespace :leaders do
     #サークル
-    resources :circles, only:[:new, :create, :edit, :update, :destroy]
-      post 'circles/confirm'
-      post 'circles/back'
+    resources :circles, only:[:new, :create, :edit, :update]
     #マイページ
     resources :leaders, only:[:show, :edit, :update] do
       member do

@@ -1,6 +1,5 @@
 class Circle < ApplicationRecord
   attachment :image
-  has_one :image_id
   belongs_to :leader
   #お気に入り
   has_many :favorites, dependent: :destroy
