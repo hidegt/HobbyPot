@@ -67,8 +67,11 @@
           </td>
         </tr>
         <tr class="circle_tr">
-          <th class="circle_th"><div class="circle-tags-field"><%= f.label "タグ", class:"fas fa-tags" %></div></th>
-          <td class="circle_td"><ul id="circle-tags"></ul></td>
+          <th class="circle_th"><%= f.label :category_name, "カテゴリー", class:"fas fa-tags" %></th>
+          <td class="circle_td">
+            <p class="m-0"><small>２つ以上入力する場合はカンマ(',')で区切ってください</small></p>
+            <%= f.text_field :category_name, class:"circle_form_font", placeholder: "例）旅行,スポーツ,散歩", value: @category_list %>
+          </td>
         </tr>
         <tr class="circle_tr">
           <th class="circle_th"><%= f.label :circle_status, "公開設定", class:"fas fa-unlock-alt" %></th>

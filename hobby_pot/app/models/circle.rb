@@ -17,19 +17,19 @@ class Circle < ApplicationRecord
   end
 
   # タグ
-  has_many :categories, through: :circle_categories
   has_many :circle_categories, dependent: :destroy
-  def save_categories(tags)
-    current_tags = slf.categories.pluck(:category_name) unless self.categories.nill?
-    old_tags = current_tags - tags
-    new_tags = tags - current_tags
+  has_many :categories, through: :circle_categories
+  def save_categories(categories)
+    current_categories = self.categories.pluck(:category_name) unless self.categories.nil?
+    old_categories = current_categories - categories
+    new_categories = categories - current_categories
     #古いタグを消す
-    old_tags.each do |old_name|
-      self.categories.delete Category.find_by(name:old_name)
+    old_categories.each do |old_name|
+      self.categories.delete Category.find_by(category_name:old_name)
     end
-    #新しいタグを消す
-    new_tags.each do |new_name|
-      circle_category = Category.find_or_create_by(name:new_name)
+    #新しいタグを作成
+    new_categories.each do |new_name|
+      circle_category = Category.find_or_create_by(category_name:new_name)
       self.categories << circle_category
     end
   end

@@ -7,11 +7,10 @@ class Leaders::CirclesController < ApplicationController
   end
 
   def create
-    @circle = Circle.new(circle_params)
-    @circle.leader_id = current_leader.id
-    # category_list = params[:category_list].split(",")
+    @circle = current_leader.circles.new(circle_params)
+    category_list = params[:circle][:category_name].delete(" ").split(",")
     if @circle.save
-      # @circle.save_categories(category_list)
+      @circle.save_categories(category_list)
       redirect_to circle_path(@circle)
     else
       render :new
@@ -19,13 +18,13 @@ class Leaders::CirclesController < ApplicationController
   end
 
   def edit
-    # @category_list = @article.categories.pluck(:category_name).join(",")
+    @category_list = @circle.categories.pluck(:category_name).join(",")
   end
 
   def update
-    category_list = params[:category_list].split(",")
-    if @circle.update
-     @article.save_categories(category_list)
+    category_list = params[:circle][:category_name].split(",")
+    if @circle.update(circle_params)
+     @circle.save_categories(category_list)
      redirect_to leaders_circle_path(@circle)
     else
      render :edit
@@ -36,6 +35,7 @@ class Leaders::CirclesController < ApplicationController
   def circle_params
     params.require(:circle).permit(:circle_title,:image, :circle_about,:date_and_time,:schedule,:prepare,:join_cost, :number_people, :circle_status, :postcode,:prefecture_code,:address_city,:address_street,:address_building)
   end
+
   def if_not_leader
     redirect_to root_path unless current_leader
   end
