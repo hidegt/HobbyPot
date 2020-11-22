@@ -2,9 +2,22 @@
   <div class="row justify-content-center m-3 p-3">
     <h2 class="top-border">イベント一覧</h2>
   </div>
+  <div class="row">
+    <div class="col-10">
+      
   <% @circles.each do |circle| %>
     <div class="row row_zoom">
       <%= render 'common/circle_index', circle: circle %>
     </div>
   <% end %>
+    </div>
+    <div class="col-2">
+      <% @category_list.each do |list| %>
+        <%= link_to list.category_name, circles_path(category_id: list.id) %>
+        <%= "(#{list.circles.count})" %>
+        <% end %>
+    </div>
+    
+  </div>
+  
 </div>

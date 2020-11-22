@@ -4,8 +4,14 @@ class Users::CirclesController < ApplicationController
   end
 
   def index
-    @circles = Circle.page(params[:page]).reverse_order
-    @category_list = Category.all
+    if params[:category_id]
+      @category_list = Category.all
+      @list = Category.find(params[:category_id])
+      @circles = @list.circles.page(params[:page]).reverse_order
+    else
+      @category_list = Category.all
+      @circles = Circle.page(params[:page]).reverse_order
+    end
   end
 
   def show

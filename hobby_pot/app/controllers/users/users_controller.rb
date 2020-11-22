@@ -26,7 +26,7 @@ class Users::UsersController < ApplicationController
     reset_session
     redirect_to root_path
   end
-  
+
   private
   def if_not_current_user
     @user = User.find(params[:id])

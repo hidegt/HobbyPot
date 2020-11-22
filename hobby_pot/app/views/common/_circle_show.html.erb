@@ -1,5 +1,5 @@
 <% @circle_categories.each do |category| %>
-<%= category.category_name %>
+<%= link_to category.category_name, circles_path(category_id: category.id) %>
 <% end %>
 <div class="row justify-content-center m-3 p-3">
   <h1 class="top-border"><%= circle.circle_title %><h1>
