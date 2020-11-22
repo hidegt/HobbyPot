@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resource :join_circles, only: [:create,:destroy]
       resources :circle_comments, only:[:create, :destroy]
     end
+      
     #マイページ
     resources :users, only:[:show, :edit, :update] do
       member do

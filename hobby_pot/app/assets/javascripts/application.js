@@ -32,4 +32,4 @@ $(document).ready(function(){
    $('.hidden_box').on('click',function(){
       $('.hidden_show').stop().slideToggle();
    });
-})
+});

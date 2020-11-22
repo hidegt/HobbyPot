@@ -23,17 +23,18 @@
     </div>
     <div class="col-md-8 offset-md-1">
       <h3 class="text-center user_title">参加イベント一覧</h3>
-      <% current_user.j_circles.each do |circle| %>
+      <% current_user.j_circles.each do |j_circle| %>
         <div class="row row_zoom">
-          <%= render 'common/circle_index', circle: circle %>
+          <%= render 'common/circle_index', circle: j_circle %>
         </div>
       <% end %>
+      <div id="calendar"></div>
       <div class="user_show">
         <h4 class="text-center hidden_box user_title">お気に入り一覧</h4>
         <div class="hidden_show">
-          <% current_user.fav_circles.each do |circle| %>
+          <% current_user.fav_circles.each do |fav_circle| %>
             <div class="row row_zoom">
-              <%= render 'common/circle_top', circle: circle %>
+              <%= render 'common/circle_top', circle: fav_circle %>
             </div>
           <% end %>
         </div>
