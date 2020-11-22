@@ -493,3 +493,29 @@ a.btn-radius-solid:hover {
 #calendar{
   background: #fff;
 }
+// カレンダー
+.simple-calendar {
+  .day {}
+
+  .wday-0 {color: red}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {color: blue}
+
+  .today {background: #feffe6;}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {opacity: 0.3;}
+  .next-month {opacity: 0.3;}
+  .current-month {background: #fff;}
+
+  .has-events {
+    border: 2px solid #f2a5c8;
+  }
+}
