@@ -1,4 +1,5 @@
 class Leaders::LeadersController < ApplicationController
+  before_action :authenticate_leader!
   before_action :if_not_current_leader, only: [:edit, :update, :unsubscribe, :withdraw]
   before_action :set_leader, only: [:update, :unsubscribe, :withdraw]
   def show

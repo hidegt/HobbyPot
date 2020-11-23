@@ -1,4 +1,5 @@
 class Users::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :if_not_current_user, only: [:edit, :update, :unsubscribe, :withdraw]
   before_action :set_user, only: [:edit, :update, :unsubscribe, :withdraw]
   def show

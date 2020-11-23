@@ -1,5 +1,6 @@
 class Users::FavoritesController < ApplicationController
   before_action :set_circle
+  before_action :authenticate_user!
 
   def create
     favorite = current_user.favorites.build(circle_id: params[:circle_id])

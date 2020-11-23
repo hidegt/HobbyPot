@@ -35,22 +35,23 @@
           <%= link_to "サークルリーダーになる", new_leader_registration_path %>
         </p>
       </div>
+    </div>
   </div>
 </div>
 <div id="lineup">
   <div class="lineup-section">
     <h2 class="lineup-title"><span class="top-border">Line up</span></h2>
     <div class="row justify-content-around lineup-row">
-        <% @circles.each do |circle| %>
-          <%= render 'common/circle_top', circle: circle %>
-        <% end %>
-      </div>
+      <% @circles.each do |circle| %>
+        <%= render 'common/circle_top', circle: circle %>
+      <% end %>
     </div>
-    <div class="row justify-content-center pb-5">
-      <p class="p-3">この他にもたくさんサークルイベントがあります！<br>
-        <%= link_to "イベントをもっと見る→", circles_path, class:"mt-3 btn btn-outline-warning" %></p>
-      </div>
-    </div>
+  </div>
+  <div class="row justify-content-center pb-5">
+    <p class="p-3">
+      この他にもたくさんサークルイベントがあります！<br>
+      <%= link_to "イベントをもっと見る→", circles_path, class:"mt-3 btn btn-outline-warning" %>
+    </p>
   </div>
 </div>
 <!--以下js専用-->

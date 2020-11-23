@@ -1,4 +1,5 @@
 class Leaders::CirclesController < ApplicationController
+  before_action :authenticate_leader!
   before_action :if_not_leader
   before_action :set_circle, only: [:edit, :update]
 
@@ -25,7 +26,7 @@ class Leaders::CirclesController < ApplicationController
     category_list = params[:circle][:category_name].split(",")
     if @circle.update(circle_params)
      @circle.save_categories(category_list)
-     redirect_to leaders_circle_path(@circle)
+     redirect_to circle_path(@circle)
     else
      render :edit
     end
@@ -33,7 +34,7 @@ class Leaders::CirclesController < ApplicationController
 
   private
   def circle_params
-    params.require(:circle).permit(:circle_title,:image, :circle_about,:date_and_time,:schedule,:prepare,:join_cost, :number_people, :circle_status, :postcode,:prefecture_code,:address_city,:address_street,:address_building)
+    params.require(:circle).permit(:circle_title,:image, :circle_about,:start_time,:schedule,:prepare,:join_cost, :number_people, :circle_status, :postcode,:prefecture_code,:address_city,:address_street,:address_building)
   end
 
   def if_not_leader
