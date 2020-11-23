@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_22_134942) do
+ActiveRecord::Schema.define(version: 2020_11_23_150301) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_134942) do
   create_table "circles", force: :cascade do |t|
     t.integer "leader_id", null: false
     t.string "circle_title", null: false
-    t.integer "image_id", null: false
+    t.string "image_id", null: false
     t.text "circle_about", null: false
     t.datetime "start_time", null: false
     t.text "schedule", null: false

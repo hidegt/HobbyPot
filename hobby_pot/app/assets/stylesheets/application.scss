@@ -58,9 +58,6 @@ header{
 li{
   color: #fff;
 }
-.wc{
-  padding: 0;
-}
 #back{
   position: fixed;
   right: 20px;
@@ -122,13 +119,19 @@ li{
   height: 7px;
   background: repeating-linear-gradient(-45deg, #ff8503, #ff8503 2px, white 2px, white 4px);
 }
+#about {
+  position: relative;
+  background: #fff1e3;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+  padding-bottom: 90px;
+}
 // #aboutのスライド
 #slide-about{
   height: 650px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 90px;
 }
 .about1{
   background: image-url('spice.jpeg');
@@ -136,9 +139,6 @@ li{
   width: 500px;
 }
 // lineup
-#lineup{
-  background-color: #fff;
-}
 .lineup-row {
   margin-top: 50px;
 }
@@ -180,6 +180,8 @@ a.btn-radius-solid:hover {
   transform:scale(1.1,1.1);
   transition: 2s all;
 }
+// circle show
+
 // circle show
 // いいね
 .btn-hart {

@@ -44,11 +44,19 @@ class Circle < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
+  #ステータス
   def status
     if circle_status
      "公開する"
     else
       "非公開"
     end
+  end
+
+  #バリデーション
+  validate :date_before_start
+  def date_before_start
+    return if start_time.blank?
+    errors.add(:start_time,"は今日以降のものを選択してください") if start_time < Date.today
   end
 end
