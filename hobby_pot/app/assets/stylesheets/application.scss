@@ -181,7 +181,124 @@ a.btn-radius-solid:hover {
   transition: 2s all;
 }
 // circle show
-
+// タグ
+.circle_tag {
+	list-style: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	top: 28%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+					transform: translate(-50%,-50%);
+}
+.circle_tag li {
+	display: inline-block;
+}
+.circle_tag a {
+	line-height: 26px;
+	position: relative;
+	display: inline-block;
+	height: 26px;
+	margin: 0 10px 10px 0;
+	padding: 0 20px 0 23px;
+	-webkit-transition: color 0.2s;
+	        transition: color 0.2s;
+	text-decoration: none;
+	color: #455a64;
+	border-radius: 3px 0 0 3px;
+	background: #cfd8dc;
+}
+.circle_tag a::before{
+	background: #fafcfc;/*背景色*/
+}
+.circle_tag a::before {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 6px;
+	height: 6px;
+	content: '';
+	border-radius: 10px;
+}
+.circle_tag a::after {
+	position: absolute;
+	top: -2px;
+	right: -6px;
+	width: 0;
+	height: 0;
+	content: '';
+	border-width: 15px 0 15px 8px;
+	border-style: solid;
+	border-color: transparent transparent transparent #cfd8dc;
+	border-radius: 4px;
+}
+.circle_tag a:hover {
+	color: #ffffff;
+	background-color: #ec407a;
+}
+.circle_tag a:hover::after {
+	border-left-color: #ec407a;;
+}
+.list_tag {
+	list-style: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+					transform: translate(-50%,-50%);
+}
+.list_tag li {
+	display: inline-block;
+}
+.list_tag a {
+	line-height: 26px;
+	position: relative;
+	display: inline-block;
+	height: 26px;
+	margin: 0 10px 10px 0;
+	padding: 0 20px 0 23px;
+	-webkit-transition: color 0.2s;
+	        transition: color 0.2s;
+	text-decoration: none;
+	color: #455a64;
+	border-radius: 3px 0 0 3px;
+	background: #cfd8dc;
+}
+.list_tag a::before{
+	background: #fafcfc;/*背景色*/
+}
+.list_tag a::before {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 6px;
+	height: 6px;
+	content: '';
+	border-radius: 10px;
+}
+.list_tag a::after {
+	position: absolute;
+	top: -2px;
+	right: -6px;
+	width: 0;
+	height: 0;
+	content: '';
+	border-width: 15px 0 15px 8px;
+	border-style: solid;
+	border-color: transparent transparent transparent #cfd8dc;
+	border-radius: 4px;
+}
+.list_tag a:hover {
+	color: #ffffff;
+	background-color: #ec407a;
+}
+.list_tag a:hover::after {
+	border-left-color: #ec407a;;
+}
 // circle show
 // いいね
 .btn-hart {
@@ -267,9 +384,8 @@ a.btn-radius-solid:hover {
   border-bottom: none;
   text-decoration: none;
 }
-// circle new&edit
 
-// circle new&edit&confirm
+// circle new&edit
 .circle_t{
   width: 100%;
   border-collapse: collapse;
@@ -317,6 +433,12 @@ a.btn-radius-solid:hover {
   border-radius: 6px;
   margin-bottom: 3px;
   border: 1px solid #eee;
+}
+// 写真投稿
+.img_prev:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(1.05, 1.05);
 }
 // ===ユーザーとリーダーのログイン画面===
 // login
