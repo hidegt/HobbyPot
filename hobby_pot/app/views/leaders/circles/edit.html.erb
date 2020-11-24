@@ -11,7 +11,7 @@
           <%= message %>
         <% end %>
       <% end %>
-      <%= render 'leaders/circles/circleform', category_list: @category_list, f: f %>
+      <%= render 'leaders/circles/circleform', circle: @circle, category_list: @category_list, f: f %>
       <div class="actions my-5">
         <%= f.submit "更新する", class:"signup_btn my-5" %>
         <%= link_to "削除", leaders_circle_path(@circle), method: :delete, class:"btn btn-primary taikai_btn my-auto", "data-confirm" => "このイベントを完全に削除します。よろしいですか？" %>

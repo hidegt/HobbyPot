@@ -1,7 +1,10 @@
 <table class="circle_t">
   <tr class="circle_tr">
     <th class="circle_th"><%= f.label :image, "写真", class:"fas fa-image" %></th>
-    <td class="circle_td"><%= f.attachment_field :image %></td>
+    <td class="circle_td">
+      <%= f.attachment_field :image, class:'img_field', style:'display:none' %>
+      <%= attachment_image_tag circle, :image, size: "200x200", fallback: "no_image.jpg", class:"mx-auto img-thumbnail img_prev", onClick: "$('.img_field').click()" %>
+    </td>
   </tr>
   <tr class="circle_tr">
     <th class="circle_th"><%= f.label :circle_title, "イベント名", class:"fas fa-file-signature" %></th>

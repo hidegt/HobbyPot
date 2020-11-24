@@ -18,10 +18,17 @@
       <% end %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h3 class="text-center user_title">イベント一覧</h3>
-      <% @circles.each do |circle| %>
-      <%= render 'common/circle_index', circle: circle %>
-      <% end %>
+      <h3 class="text-center user_title">イベントスケジュール</h3>
+      <div id="calendar">
+        <%= month_calendar events: @circles do |date, circle| %>
+          <%= date.day %>
+          <% circle.each do |c| %>
+            <div>
+              <%= link_to c.circle_title, c %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -22,16 +22,16 @@
       <% end %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h3 class="text-center user_title">スケジュール</h3>
+      <h3 class="text-center user_title">イベントスケジュール</h3>
       <div id="calendar">
-      <%= month_calendar events: current_user.j_circles do |date, j_circles| %>
-      <%= date.day %>
-      <% j_circles.each do |j_c| %>
-      <div>
-      <%= link_to j_c.circle_title, j_c %>
-    </div>
-      <% end %>
-      <% end %>
+        <%= month_calendar events: current_user.j_circles do |date, j_circles| %>
+          <%= date.day %>
+          <% j_circles.each do |j_c| %>
+            <div>
+              <%= link_to j_c.circle_title, j_c %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
       <div class="user_show">
         <h4 class="text-center hidden_box user_title">お気に入り一覧</h4>

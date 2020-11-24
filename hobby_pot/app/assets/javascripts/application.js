@@ -30,6 +30,21 @@ $(document).ready(function() {
 // 退会へのボタン
 $(document).ready(function(){
    $('.hidden_box').on('click',function(){
-      $('.hidden_show').stop().slideToggle();
+       $('.hidden_show').stop().slideToggle();
    });
+});
+// 写真プレビュー
+$(function(){
+  function readURL(input){
+    if (input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        $('.img_prev').attr('src', e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $('.img_field').change(function(){
+    readURL(this);
+  });  
 });

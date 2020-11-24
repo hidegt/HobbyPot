@@ -10,7 +10,7 @@
           <%= message %>
         <% end %>
       <% end %>
-      <%= render 'leaders/circles/circleform', category_list: @category_list, f: f %>
+      <%= render 'leaders/circles/circleform', circle: @circle, category_list: @category_list, f: f %>
       <div class="actions my-5">
         <%= f.submit "作成する", class:"signup_btn my-5" %>
       </div>
