@@ -1,10 +1,11 @@
 class Leaders::LeadersController < ApplicationController
-  before_action :authenticate_leader!
+  before_action :authenticate_leader!, only:[:edit, :update, :unsubscribe, :withdraw]
   before_action :if_not_current_leader, only: [:edit, :update, :unsubscribe, :withdraw]
   before_action :set_leader, only: [:update, :unsubscribe, :withdraw]
   def show
     @leader = Leader.find(params[:id])
     @circles = @leader.circles
+    # @all_circles = @circles.find(Favorite.group(:circle_id).order('count(circle_id) desc').limit(4).pluck(:circle_id))
   end
 
   def edit
@@ -20,13 +21,11 @@ class Leaders::LeadersController < ApplicationController
   end
 
   def withdraw
-    #登録情報をfalseに変更
     @leader.update(is_deleted: true)
-    #sessionIDのリセットを行う
     reset_session
     redirect_to root_path
   end
-  
+
   private
   def if_not_current_leader
     @leader = Leader.find(params[:id])

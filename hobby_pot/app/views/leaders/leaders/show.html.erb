@@ -9,12 +9,14 @@
     	<div class="info_box mb-3">
     		<p><%= simple_format(h(@leader.introduction)) %></p>
     	</div>
-      <% if @leader.id == current_leader.id %>
-    	<div class="row">
-    	  <%= link_to edit_leaders_leader_path(current_leader.id), class:"btn_flat_horizontal_border" do %>
-    	    <span>プロフィール編集</span>
-    	  <% end %>
-    	</div>
+      <% if leader_signed_in? %>
+        <% if @leader.id == current_leader.id %>
+      	<div class="row  justify-content-center">
+      	  <%= link_to edit_leaders_leader_path(current_leader.id), class:"btn_flat_horizontal_border" do %>
+      	    <span>プロフィール編集</span>
+      	  <% end %>
+      	</div>
+        <% end %>
       <% end %>
     </div>
     <div class="col-md-8 offset-md-1">
@@ -29,6 +31,17 @@
           <% end %>
         <% end %>
       </div>
+      <!--<div class="user_show">-->
+      <!--  <h4 class="text-center hidden_box user_title">ランキング</h4>-->
+      <!--  <div class="hidden_show">-->
+      <!--    % @all_circles.each.with_index(1) do |all_circle, i| %>-->
+      <!--      <div class="row row_zoom">-->
+      <!--        <p class=col-12>第%= i %>位</p><br>-->
+      <!--        %= render 'common/circle_top', circle: all_circle %>-->
+      <!--      </div>-->
+      <!--    % end %>-->
+      <!--  </div>-->
+      <!--</div>-->
     </div>
   </div>
 </div>

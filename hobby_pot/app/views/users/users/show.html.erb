@@ -14,7 +14,7 @@
     		<p><%= simple_format(h(@user.introduction)) %></p>
       </div>
       <% if @user.id == current_user.id %>
-      	<div class="row">
+      	<div class="row justify-content-center">
       	  <%= link_to edit_user_path(current_user.id), class:"btn_flat_horizontal_border" do %>
     	      <span>プロフィール編集</span>
     	    <% end %>
@@ -35,13 +35,17 @@
       </div>
       <div class="user_show">
         <h4 class="text-center hidden_box user_title">お気に入り一覧</h4>
-        <div class="hidden_show">
-          <% current_user.fav_circles.each do |fav_circle| %>
+        <% if @user.fav_circles.present? %>
+          <div class="hidden_show">
             <div class="row row_zoom">
-              <%= render 'common/circle_top', circle: fav_circle %>
+              <% @user.fav_circles.each do |fav_circle| %>
+                <%= render 'common/circle_top', circle: fav_circle %>
+              <% end %>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% else %>
+          <p>まだお気に入りイベントはありません</p>
+        <% end %>
       </div>
       </div>
     </div>

@@ -4,7 +4,14 @@
     <h5 class="card-title border-bottom"><%= circle.circle_title %></h5>
     <p class="card-text"><%= circle.circle_about %></p>
   </div>
+
   <div  class="card-body">
-    <%= link_to "詳細を見る",circle_path(circle.id),  class:"btn btn-radius-solid btn--shadow" %>
+    <%= link_to "詳細を見る",circle_path(circle.id), class:"btn btn-radius-solid btn--shadow" %>
+  </div>
+  <div class="card-footer bg-transparent">by
+    <%= link_to leaders_leader_path(circle.leader.id), class:"text-decoration-none" do %>
+      <%= attachment_image_tag circle.leader, :leader_image, size: "50x50", class:"rounded-circle img-fluid border border-dark", fallback: "no-image-icon.jpg" %>
+      <span class="text-dark"><%= circle.leader.name %></span>
+    <% end %>
   </div>
 </div>
