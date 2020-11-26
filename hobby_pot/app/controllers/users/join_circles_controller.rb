@@ -1,10 +1,10 @@
 class Users::JoinCirclesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_join
+  
   def create
     join_circle = current_user.join_circles.build(circle_id: params[:circle_id])
     join_circle.save!
-    redirect_to request.referer
   end
   
   def destroy

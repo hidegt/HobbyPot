@@ -4,8 +4,10 @@
       <%= f.text_area :comment, rows:'5', class: "form-control comment_p" ,placeholder: "コメントをここに" %>
     </div>
     <div class="faceicon pl-3">
-      <%= button_tag type: :submit, class:"btn_comment_img" do %>
-        <%= attachment_image_tag current_user, :user_image, size: "100x100",class:"rounded-circle img-fluid border border-dark", fallback: "no-image-icon.jpg" %>
+      <% if user_signed_in? %>
+        <%= button_tag type: :submit, class:"btn_comment_img" do %>
+          <%= attachment_image_tag current_user, :user_image, size: "100x100",class:"rounded-circle img-fluid border border-dark", fallback: "no-image-icon.jpg" %>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -5,9 +5,10 @@ class Leader < ApplicationRecord
          :recoverable, :rememberable, :validatable
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
-
   attachment :leader_image
-  
   #アソシエーション
   has_many :circles, dependent: :destroy
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :circle_name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :introduction, presence: true, length: { maximum: 300 }
 end

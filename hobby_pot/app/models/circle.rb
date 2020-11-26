@@ -12,6 +12,7 @@ class Circle < ApplicationRecord
 
   #参加
   has_many :join_circles, dependent: :destroy
+  has_many :joined_users, through: :join_circles, source: :user
   def joined_by?(user)
     join_circles.where(user_id: user.id).exists?
   end
@@ -59,4 +60,10 @@ class Circle < ApplicationRecord
     return if start_time.blank?
     errors.add(:start_time,"は今日以降のものを選択してください") if start_time < Date.today
   end
+  validates :circle_title, presence: true, length: { maximum: 100 }
+  validates :circle_about, presence: true, length: { maximum: 300 }
+  validates :schedule, presence: true, length: { maximum: 300 }
+  validates :prepare, presence: true, length: { maximum: 300 }
+  validates :join_cost, presence: true
+  validates :number_people, presence: true
 end

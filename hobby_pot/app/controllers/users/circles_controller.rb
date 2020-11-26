@@ -21,5 +21,9 @@ class Users::CirclesController < ApplicationController
     @join_circle = JoinCircle.new
     @circle_categories = @circle.categories
   end
+  
+  def join_circles
+    @circle = Circle.find(params[:id])
+  end
 
 end

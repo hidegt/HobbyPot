@@ -18,4 +18,8 @@ class User < ApplicationRecord
   has_many :join_circles, dependent: :destroy
   has_many :j_circles, through: :join_circles, source: :circle
   attachment :user_image
+  
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :circle_name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :introduction, presence: true, length: { maximum: 300 }
 end

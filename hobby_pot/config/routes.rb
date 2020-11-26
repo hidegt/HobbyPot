@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   #リーダー側ルート
   namespace :leaders do
     #サークル
-    resources :circles, only:[:new, :create, :edit, :update]
+    resources :circles, only:[:new, :create, :edit, :update] do
+    end
     #マイページ
     resources :leaders, only:[:show, :edit, :update] do
       member do
@@ -20,16 +21,17 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
-    resources :join_circles, only: [:index, :show, :update]
   end
 
   #ユーザー側ルート
   scope module: :users do
     #サークル
     resources :circles, only: [:index, :show] do
+      member do
+        get 'join_circles'
+      end
       resource :favorites, only: [:create, :destroy]
-      # get 'bookmarks',on: :collection
-      resource :join_circles, only: [:create,:destroy]
+      resource :join_circles, only: [:index, :create, :destroy]
       resources :circle_comments, only:[:create, :destroy]
     end
       
