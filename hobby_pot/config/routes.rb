@@ -11,26 +11,31 @@ Rails.application.routes.draw do
   #リーダー側ルート
   namespace :leaders do
     #サークル
-    resources :circles, only:[:new, :create, :edit, :update]
+    resources :circles, only:[:new, :create, :edit, :update] do
+    end
     #マイページ
     resources :leaders, only:[:show, :edit, :update] do
       member do
         #退会&ステータス変更
         get 'unsubscribe'
         patch 'withdraw'
+        resources :notifications, only: :index
       end
     end
-    resources :join_circles, only: [:index, :show, :update]
   end
 
   #ユーザー側ルート
   scope module: :users do
     #サークル
     resources :circles, only: [:index, :show] do
+      member do
+        get 'join_circles'
+      end
       resource :favorites, only: [:create, :destroy]
-      get 'bookmarks', on: :collection
+      resource :join_circles, only: [:index, :create, :destroy]
       resources :circle_comments, only:[:create, :destroy]
     end
+      
     #マイページ
     resources :users, only:[:show, :edit, :update] do
       member do
@@ -39,12 +44,7 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
-    #サークル参加
-    resources :join_circles, only: [:create, :index]
-    post 'join_circles/confirm' => 'join_circles#confirm', as: 'confirm'
-    get 'join_circles/thanks' => 'join_circles#thanks', as: 'thanks'
   end
 
   root to: 'users/circles#top'
-
 end

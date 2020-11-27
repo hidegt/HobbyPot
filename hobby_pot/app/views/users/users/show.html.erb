@@ -1,53 +1,53 @@
 <div class="container">
   <div class="row justify-content-center m-3 p-3">
     <% if @user != current_user %>
-      <h1>Welcome to <%= @user.name %>'s page  <span><i class="fas fa-paper-plane"></i></span></h1>
+      <h2 class="top-border"><%= @user.name %>　さんのページ</h2>
     <% else %>
-      <h1>My page  <span><i class="fas fa-paper-plane"></i></span><h1>
+      <h2 class="top-border">マイページ<h2>
     <% end %>
   </div>
   <div class="row mt-5">
-    <div class="col-md-4">
-      <h2 class="user_info">プロフィール</h2>
-      <table class="table">
-      	<tr><%= attachment_image_tag @user, :user_image, size: "200x200", fallback: "no-image-icon.jpg" %></tr>
-      	<tr>
-      		<th><%= @user.name %></th>
-      	</tr>
-      	<tr>
-      	  <th>都道府県</th>
-      		<td><%= @user.prefecture.name %></td>
-      	</tr>
-      	<tr>
-      		<th>自己紹介</th>
-      		<td><%= @user.introduction %></td>
-      	</tr>
-      </table>
+    <div class="col-md-2 align-self-start">
+      <div class="text-center mb-2"><%= attachment_image_tag @user, :user_image, size: "200x200",class:"rounded-circle border border-dark", fallback: "no-image-icon.jpg" %></div>
+      <h3 class="user_info text-center mb-2"><%= @user.name %></h3>
+    	<div class="info_box mb-3">
+    		<p><%= simple_format(h(@user.introduction)) %></p>
+      </div>
       <% if @user.id == current_user.id %>
-      	<div class="row">
-      	  <%= link_to "プロフィール編集", edit_user_path(@user) %>
+      	<div class="row justify-content-center">
+      	  <%= link_to edit_user_path(current_user.id), class:"btn-social-square btn-social-square--edit" do %>
+        	  <i class="fas fa-user-edit" style="font-size: 1.5em;"></i>
+    	    <% end %>
       	</div>
       <% end %>
-      <div class="row">
-        <%= link_to "お気に入り一覧", bookmarks_circles_path %>
-      </div>
     </div>
-    <div class="col-md-8">
-      <h2 class="join_circle">参加サークル</h2>
-      <!--% @join_circle.each do |j| %>-->
-        <div class="card bg-dark text-white">
-          <!--%= attachment_image_tag j, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>-->
-          <img src="..." class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <!--%= j.circle_name, class:"card-title" %>-->
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <!--%= j.circle_introduction, class:"card-text" %>-->
-            <p class="card-text">Last updated 3 mins ago</p>
+    <div class="col-md-8 offset-md-1">
+      <h3 class="text-center user_title">イベントスケジュール</h3>
+      <div id="calendar">
+        <%= month_calendar events: @user.j_circles do |date, j_circles| %>
+          <%= date.day %>
+          <% j_circles.each do |j_c| %>
+            <div>
+              <%= link_to j_c.circle_title, j_c %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="user_show">
+        <h4 class="text-center hidden_box user_title">お気に入り一覧</h4>
+        <% if @user.fav_circles.present? %>
+          <div class="hidden_show">
+            <div class="row row_zoom">
+              <% @user.fav_circles.each do |fav_circle| %>
+                <%= render 'common/circle_top', circle: fav_circle %>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <!--% end %>-->
+        <% else %>
+          <p>まだお気に入りイベントはありません</p>
+        <% end %>
+      </div>
+      </div>
     </div>
   </div>
 </div>
-

@@ -1,12 +1,19 @@
 <div class="container">
-  <div id="favorites_buttons_<%= @circle.id %>">
-    <%= render 'users/favorites/favorite', circle: @circle %>
+  <div class="row">
+    <div id="favorites_buttons_<%= @circle.id %>">
+      <%= render 'users/favorites/favorite', circle: @circle %>
+    </div>
   </div>
   <%= render 'common/circle_show', circle: @circle %>
-
   <!--コメント-->
-  <%= render 'users/circle_comments/comment_form', circle: @circle, comment: @comment %>
-  <div class="allcomments">
-    <%= render 'users/circle_comments/comment_all', circle: @circle, comment: @comment %>
-  </div>
+  <% if user_signed_in? %>
+    <%= render 'users/circle_comments/comment_form', circle: @circle, comment: @comment %>
+    <div class="allcomments">
+      <%= render 'users/circle_comments/comment_all', circle: @circle, comment: @comment %>
+    </div>
+  <% elsif leader_signed_in? %>
+    <div class="allcomments">
+      <%= render 'users/circle_comments/comment_all', circle: @circle, comment: @comment %>
+    </div>
+  <% end %>
 </div>

@@ -1,0 +1,15 @@
+<div class="row justify-content-center my-5">
+  <% if user_signed_in? %>
+    <% if circle.joined_by?(current_user) %>
+      <%= link_to "イベントをキャンセルする",circle_join_circles_path(circle), method: :delete, class: " btn btn-danger", remote: true %>
+    <% else %>
+      <%= link_to "イベントに参加する",circle_join_circles_path(circle), method: :post, class: " btn btn-primary", remote: true %>
+    <% end %>
+  <% elsif leader_signed_in?  %>
+    <% if circle.leader == current_leader %>
+      <%= link_to "編集する", edit_leaders_circle_path(circle), class:"btn btn-warning text-center" %>
+    <% end %>
+  <% else %>
+    <%= link_to "会員登録(無料)してイベントに参加する", new_user_registration_path, class:"btn btn-success" %>
+  <% end %>
+</div>

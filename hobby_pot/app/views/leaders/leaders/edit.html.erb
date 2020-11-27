@@ -1,8 +1,9 @@
 <div class="login_form">
   <h2 class="login_title">プロフィール編集</h2>
-  <%= form_with model:@leader, url: leaders_leader_path do |f| %>
+  <%= form_with model: @leader, url: leaders_leader_path do |f| %>
   <div class="field">
-     <%= f.attachment_field :leader_image, placeholder: "  写真を選択", class:"" %>
+    <%= f.attachment_field :leader_image, class:'img_field', style:'display:none' %>
+    <%= attachment_image_tag @leader, :leader_image, size: "150x150", fallback: "no-image-icon.jpg", class:"offset-md-4 img-fluid border border-secondary rounded-circle img_prev", onClick: "$('.img_field').click()" %>
   </div>
   <div class="field">
     <%= f.label :　アカウント名, class:"fas fa-user pt-3" %>
@@ -24,8 +25,8 @@
     <%= f.submit "更新する", class:"signup_btn" %>
   </div>
 <% end %>
-<h6 class="taikai">退会を希望しますか？</h6>
-  <div class="social">
+<h6 class="hidden_box taikai">退会を希望しますか？</h6>
+  <div class="hidden_show social">
     <%= link_to "退会する", unsubscribe_leaders_leader_path(current_leader.id), class:"btn btn-primary taikai_btn my-auto" %>
   </div>
 </div>

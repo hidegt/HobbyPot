@@ -1,0 +1,46 @@
+<div id="about">
+  <div class="about-section">
+    <h2 class="about-title"><span class="top-border">About</span></h2>
+  </div>
+  <div id="slide-about" class="mx-auto">
+    <div id="fade_about">
+      <div class="about1 text-center">
+        <%= image_tag 'about1.jpg', size: "400x500", class: "rounded img-fluid" %>
+        <p class="about1-p">
+          パソコンやスマホでサクッと新しい趣味探し<br>
+          オリジナルのイベント作成、参加ができます<br>
+        </p>
+      </div>
+      <div class="about2 text-center">
+        <%= image_tag 'about2.jpg', size: "400x500", class: "rounded img-fluid" %>
+        <p class="about2-p">
+          いつもの料理にスパイスを加えて味を楽しむように<br>
+          趣味というスパイスを加えませんか？<br>
+          <%= link_to circles_path, class:"my-3 mx-auto about_button" do %>
+            <span>イベントをもっと見る <i class="fas fa-walking"></i></span>
+          <% end %>
+        </p>
+      </div>
+      <div class="about3 text-center">
+        <%= image_tag 'about3.jpg', size: "400x500", class: "rounded img-fluid" %>
+        <p class="about3-p">
+          イベントに参加するには参加者用の会員登録(無料)が必要です。<br>
+          イベントに参加したら、きっと新しい仲間も見つかるはず！！<br>
+          <%= link_to new_user_registration_path, class:"my-3 mx-auto about_button" do %>
+            <span>サークルを楽しむ <i class="far fa-laugh-squint"></i></span>
+          <% end %>
+        </p>
+      </div>
+      <div class="about4 text-center">
+        <%= image_tag 'about4.jpg', size: "400x500", class: "rounded img-fluid" %>
+        <p class="about4-p">
+          イベントを企画するにはリーダー用の会員登録(無料)が必要です。<br>
+          オリジナルイベント、お待ちしてます！！<br>
+          <%= link_to new_leader_registration_path, class:"my-3 mx-auto about_button" do %>
+            <span>イベントを企画する<i class="fas fa-edit"></i></span>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

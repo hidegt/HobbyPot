@@ -1,65 +1,28 @@
+<!--top-->
 <div class="top">
   <div class="main">
     <p id="main_p">人生にほんの少しの<br>スパイスを・・・</p>
   </div>
 </div>
 <!--about-->
-<div id="about">
-  <div class="about-section">
-    <h2 class="about-title"><span class="top-border">About</span></h2>
-  </div>
-  <div id="slide-about">
-    <div class="fade_about">
-      <i class="icon fas fa-chevron-circle-left"></i>
-      <div class="about1">
-        <p class="about1-p">
-          パソコンやスマホでサクッと新しい趣味探し
-        </p>
-      </div>
-      <i class="icon fas fa-chevron-circle-right"></i>
-      <div class="about2">
-        <p class="about2-p">
-          多種多様な趣味がここにあります！
-          リンク：サークル一覧
-        </p>
-      </div>
-      <div class="about3">
-        <p class="about3-p">
-          サークルメンバー募集中！！
-          <%= link_to "サークルを楽しむ", new_user_registration_path %>
-        </p>
-      </div>
-      <div class="about4">
-        <p class="about4-p">
-          サークルリーダー大募集中！！<br>自分の大好きな趣味を共有しましょう！
-          <%= link_to "サークルリーダーになる", new_leader_registration_path %>
-        </p>
-      </div>
-  </div>
-</div>
+<%= render 'users/circles/about' %>
+<!--lineup-->
 <div id="lineup">
   <div class="lineup-section">
     <h2 class="lineup-title"><span class="top-border">Line up</span></h2>
     <div class="row justify-content-around lineup-row">
-        <% @circles.each do |circle| %>
-          <div class="card  text-center mx-3" style="width: 18rem;">
-            <%= attachment_image_tag circle, :image, size: "200x200", fallback: "no_image.jpg", class:"card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title border-bottom"><%= circle.circle_title %></h5>
-              <p class="card-text"><%= circle.circle_about %></p>
-            </div>
-            <div  class="card-body">
-              <%= link_to "詳細を見る",circle_path(circle.id),  class:"btn btn-radius-solid btn--shadow" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <% @circles.each do |circle| %>
+        <%= render 'common/circle_top', circle: circle %>
+      <% end %>
     </div>
-    <div class="row justify-content-center pb-5">
-      <p class="p-3">この他にもたくさんサークルイベントがあります！<br>
-        <%= link_to "イベントをもっと見る→", circles_path, class:"mt-3 btn btn-outline-warning" %></p>
-      </div>
-    </div>
+  </div>
+  <div class="row justify-content-center pb-5">
+    <p class="p-3">
+      この他にもたくさんサークルイベントがあります！<br>
+      <%= link_to circles_path, class:"my-3 mx-auto top_button" do %>
+        <span>イベントをもっと見る <i class="far fa-hand-point-right"></i></span>
+      <% end %>
+    </p>
   </div>
 </div>
 <!--以下js専用-->

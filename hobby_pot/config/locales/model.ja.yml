@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      circle: サークル
+    attributes:
+      user:
+        id: ID
+        email: メールアドレス
+        file: プロフィール画像
+        crypted_password: パスワード
+        created_at: 作成日
+        updated_at: 更新日
+    attributes:
+      circle:
+        start_time: 日付
+      

@@ -1,56 +1,65 @@
-<!--未完成-->
 <div class="container">
   <div class="row justify-content-center m-3 p-3">
-      <h1><%= @leader.circle_name %><h1>
+  <% if @user != current_leader %>
+    <h2 class="top-border"><%= @leader.name %>　さんのページ</h2>
+  <% else %>
+    <h2 class="top-border">マイページ<h2>
+  <% end %>
   </div>
   <div class="row mt-5">
-    <div class="col-md-4">
-      <h2 class="user_info">プロフィール</h2>
-      <table class="table">
-      	<tr><%= attachment_image_tag @leader, :leader_image, size: "200x200", fallback: "no-image-icon.jpg" %></tr>
-      	<tr>
-      		<th><%= @leader.name %></th>
-      	</tr>
-      	<tr>
-      	  <th>都道府県</th>
-      		<td><%= @leader.prefecture.name %></td>
-      	</tr>
-      	<tr>
-      	  <th>自己紹介</th>
-      	</tr>
-      	<tr>
-      		<td><%= @leader.introduction %></td>
-      	</tr>
-      </table>
-      <% if @leader.id == current_leader.id %>
-      	<div class="row">
-      	  <%= link_to "プロフィール編集", edit_leaders_leader_path(current_leader.id) %>
-      	</div>
+    <div class="col-md-3 align-self-start">
+      <div class="text-center mb-2"><%= attachment_image_tag @leader, :leader_image, size: "200x200",class:"rounded-circle border border-dark", fallback: "no-image-icon.jpg" %></div>
+      <h3 class="user_info text-center mb-2"><%= @leader.name %></h3>
+    	<div class="info_box mb-3">
+    		<p><%= simple_format(h(@leader.introduction)) %></p>
+    	</div>
+      <% if leader_signed_in? %>
+        <% if @leader.id == current_leader.id %>
+        	<div class="row justify-content-center">
+        	  <%= link_to edit_leaders_leader_path(current_leader.id), class:"btn-social-square btn-social-square--edit" do %>
+        	    <i class="fas fa-user-edit" style="font-size: 1.5em;"></i>
+        	  <% end %>
+        	  <%= link_to leaders_notifications_path(current_leader.id), class:"btn-social-square btn-social-square--alart" do %>
+        	    <% if unchecked_notifications.any? %>
+        	      <span class="fa-stack">
+        	        <i class="far fa-bell fa-stack-2x" style="font-size: 1.5em;"></i>
+        	        <i class="fas fa-circle n-circle fa-stack-1x"></i>
+        	      </span>
+        	     <% else %>
+        	       <i class="far fa-bell" style="font-size: 1.5em;"></i>
+        	    <% end %>
+        	  <% end %>
+        	</div>
+        <% end %>
       <% end %>
     </div>
-    <div class="col-md-8">
-      <h2 class="circle">イベント一覧</h2>
-      <% @circles.each do |circle| %>
-        <div class="card bg-dark text-white">
-          <%= attachment_image_tag circle, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>
-          <div class="card-img-overlay">
-            <h5 class="card-title"><%= circle.circle_title %></h5>
-            <p class="card-text"><%= safe_join(circle.circle_about.split("\n"),tag(:br)) %></p>
-            <p class="card-text">開催日　<%= circle.date_and_time %></p>
-          </div>
+    <div class="col-md-8 offset-md-1">
+      <h3 class="text-center user_title"><%= @leader.circle_name %>　イベントスケジュール</h3>
+      <div id="calendar">
+        <%= month_calendar events: @circles do |date, circle| %>
+          <%= date.day %>
+          <% circle.each do |c| %>
+            <div>
+              <%= link_to c.circle_title, c %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="user_show">
+      <h4 class="text-center hidden_box user_title">ランキング</h4>
+      <div class="hidden_show">
+        <div class="row row_zoom">
+          <% @all_circles.each.with_index(1) do |all_circle, i| %>
+            <div class="col-sm-3">
+              <p class="mb-0 text-center">第<%= i %>位　　
+                <i class="fas fa-heart" style="color: red;"></i> <%= all_circle.favorites.count %>
+              </p><br>
+              <%= render 'common/circle_top', circle: all_circle %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-      <h2 class="join-circle">参加イベント一覧</h2>
-      <!--% @join_circles.each do |join| %>-->
-        <div class="card bg-dark text-white">
-          <!--%= attachment_image_tag join, :image, size: "200x200", format: "jpeg", class:"card-img", fallback: "no_image.jpg" %>-->
-          <div class="card-img-overlay">
-            <!--<h5 class="card-title">%= join.circle_title %></h5>-->
-            <!--<p class="card-text">%= safe_join(join.circle_about.split("\n"),tag(:br)) %></p>-->
-            <!--<p class="card-text">開催日　%= join.date_and_time %></p>-->
-          </div>
-        </div>
-      <!--% end %>-->
+      </div>
     </div>
   </div>
 </div>

@@ -1,13 +1,26 @@
 <div class="row justify-content-center m-3 p-3">
-  <h1 class="top-border"><%= circle.circle_title %><h1>
+  <ul class="circle_tag">
+    <% @circle_categories.each do |category| %>
+      <li><%= link_to category.category_name, circles_path(category_id: category.id) %> </li>
+    <% end %>
+  </ul>
+  <h1 class="top-border pt-5 mb-0"><%= circle.circle_title %><h1>
 </div>
-
 <div class="row">
-  <%= attachment_image_tag circle, :image, size: "500x500", fallback: "no_image.jpg", class:"mx-auto" %>
+  <div class="col-md-3 offset-8 pb-3">
+    作成者：
+    <%= link_to leaders_leader_path(@circle.leader.id), class:"text-decoration-none" do %>
+      <%= attachment_image_tag @circle.leader, :leader_image, size: "100x100", class:"rounded-circle img-fluid border border-dark", fallback: "no-image-icon.jpg" %>
+      <span class="text-dark"><%= @circle.leader.name %></span>
+    <% end %>
+  </div>
+</div>
+<div class="row pt-2">
+  <%= attachment_image_tag circle, :image, size: "500x500", class:"mx-auto" %>
 </div>
 <div class="row justify-content-center my-3">
   <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-sun"></i> 開催日: </div>
-  <div class="col-md-2 border-bottom border-secondary"><%= circle.date_and_time.strftime('%Y/%m/%d %H:%M') %></div>
+  <div class="col-md-2 border-bottom border-secondary"><%= circle.start_time.strftime('%Y/%m/%d %H:%M') %></div>
 </div>
 <div class="row justify-content-center my-3">
   <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-bus-alt"></i> 場所: </div>
@@ -20,7 +33,7 @@
   <div class="col-md-2 border-bottom border-secondary"><%= safe_join(circle.circle_about.split("\n"),tag(:br)) %></div>
 </div>
 <div class="row justify-content-center my-3">
-  <div class="col-md-2 border-bottom border-secondary"><i class="far fa-clock"></i> 当日の流れ: </div>
+  <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-clock"></i> 当日の流れ: </div>
   <div class="col-md-2 border-bottom border-secondary"><%= safe_join(circle.schedule.split("\n"),tag(:br)) %></div>
 </div>
 <div class="row justify-content-center my-3">
@@ -29,19 +42,13 @@
 </div>
 <div class="row justify-content-center my-3">
   <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-users"></i>　募集人数: </div>
-  <div class="col-md-2 border-bottom border-secondary"><%= circle.number_people + "人" %></div>
+  <div class="col-md-2 border-bottom border-secondary">
+    <%= circle.number_people + "人" %>(現在申込　<%= link_to @circle.join_circles.count, join_circles_circle_path(@circle) %>人)</div>
 </div>
 <div class="row justify-content-center my-3">
   <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-shopping-bag"></i> 用意するもの: </div>
   <div class="col-md-2 border-bottom border-secondary"><%= safe_join(circle.prepare.split("\n"),tag(:br)) %></div>
 </div>
-  <div class="row justify-content-center my-5">
-    <% if user_signed_in? %>
-      <%= form_with model: @join_circle, url: confirm_path, class: "form-inline", local: true do |f| %>
-        <%= f.hidden_field :circle_id, value: @circle.id %>
-        <%= f.submit "イベントに参加する", class: " btn btn-primary" %>
-      <% end %>
-    <% else %>
-      <%= link_to "会員登録(無料)してイベントに参加する", new_user_registration_path, class:"btn btn-success" %>
-    <% end %>
-  </div>
+<div id="join_buttons_<%= @circle.id %>">
+  <%= render 'users/join_circles/join', circle: @circle %>
+</div>

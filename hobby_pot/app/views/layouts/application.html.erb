@@ -4,7 +4,6 @@
     <title>HobbyPot</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/404e462280.js" crossorigin="anonymous"></script>
@@ -12,15 +11,13 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
   </head>
 
-  <body>
-    <%= render 'layouts/header' %>
+  <body data-turbolinks="false">
     <div id="wrapper">
+      <%= render 'layouts/header' %>
       <%= yield %>
       <span id="back">
         <a href="#"><%= image_tag "btn.png", class:"btn-up" %></a>
       </span>
     </div>
-  
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </body>
 </html>

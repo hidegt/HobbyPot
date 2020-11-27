@@ -27,9 +27,39 @@ $(document).ready(function() {
     event.preventDefault();
   });
 });
+$(document).ready(function () {
+  $("#fade_about").skippr({
+    transition : 'slide',
+    speed : 2000,
+    easing : 'easeOutQuart',
+    navType : 'block',
+    childrenElementType : 'div',
+    arrows : true,
+    autoPlay : true,
+    autoPlayDuration : 3000,
+    keyboardOnAlways : true,
+    hidePrevious : false
+  });
+});
+
 // 退会へのボタン
 $(document).ready(function(){
-   $('.taikai').on('click',function(){
-      $('.social').stop().slideToggle();
+   $('.hidden_box').on('click',function(){
+       $('.hidden_show').stop().slideToggle();
    });
-})
+});
+// 写真プレビュー
+$(function(){
+  function readURL(input){
+    if (input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        $('.img_prev').attr('src', e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $('.img_field').change(function(){
+    readURL(this);
+  });  
+});

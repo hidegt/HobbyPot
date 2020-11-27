@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_033109) do
+ActiveRecord::Schema.define(version: 2020_11_27_044634) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_name"], name: "index_categories_on_category_name", unique: true
+  end
+
+  create_table "circle_categories", force: :cascade do |t|
+    t.integer "circle_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_circle_categories_on_category_id"
+    t.index ["circle_id", "category_id"], name: "index_circle_categories_on_circle_id_and_category_id", unique: true
+    t.index ["circle_id"], name: "index_circle_categories_on_circle_id"
+  end
 
   create_table "circle_comments", force: :cascade do |t|
     t.text "comment"
@@ -27,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_11_13_033109) do
     t.string "circle_title", null: false
     t.string "image_id", null: false
     t.text "circle_about", null: false
-    t.datetime "date_and_time", null: false
+    t.datetime "start_time", null: false
     t.text "schedule", null: false
     t.text "prepare", null: false
     t.string "join_cost", null: false
@@ -47,15 +64,11 @@ ActiveRecord::Schema.define(version: 2020_11_13_033109) do
     t.integer "circle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["circle_id"], name: "index_favorites_on_circle_id"
-    t.index ["user_id", "circle_id"], name: "index_favorites_on_user_id_and_circle_id", unique: true
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "join_circles", force: :cascade do |t|
     t.integer "user_id"
     t.integer "circle_id"
-    t.integer "join_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,6 +89,21 @@ ActiveRecord::Schema.define(version: 2020_11_13_033109) do
     t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_leaders_on_email", unique: true
     t.index ["reset_password_token"], name: "index_leaders_on_reset_password_token", unique: true
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "circle_id"
+    t.integer "join_circle_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["circle_id"], name: "index_notifications_on_circle_id"
+    t.index ["join_circle_id"], name: "index_notifications_on_join_circle_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "users", force: :cascade do |t|

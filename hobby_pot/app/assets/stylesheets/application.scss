@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require simple_calendar
  *= require_tree .
  *= require_self
  */
@@ -25,6 +26,18 @@
 body{
   background-color: #fffddb;
 }
+// ページネーション
+.pagination>li>a{
+  border: none;
+  color: #696969;
+}
+.pagination>.active>a{
+  background: #93c9ff;
+  border-radius: 15px;
+}
+.pagination>li>a:hover{
+  border-radius: 15px;
+}
 // 右端の余白を消すため
 #wrapper {
   width: 100%;
@@ -33,8 +46,16 @@ body{
 // application.html.erb
 header{
   background-color: #fc7600;
-  height: 60px;
+  height: 80px;
   line-height: 50px;
+}
+.logo {
+  background: image-url('logo.png');
+  width: 100%;
+  height: 50px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  position: relative;
 }
 // ヘッダー部分のボーダーを斜めにする
 .app-li{
@@ -56,9 +77,6 @@ header{
 }
 li{
   color: #fff;
-}
-.wc{
-  padding: 0;
 }
 #back{
   position: fixed;
@@ -121,23 +139,73 @@ li{
   height: 7px;
   background: repeating-linear-gradient(-45deg, #ff8503, #ff8503 2px, white 2px, white 4px);
 }
+#about {
+  position: relative;
+  background: #fff1e3;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+  padding-bottom: 90px;
+}
 // #aboutのスライド
 #slide-about{
-  height: 650px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 90px;
-}
-.about1{
-  background: image-url('spice.jpeg');
   height: 500px;
-  width: 500px;
+  width: 650px;
+}
+.about_button,
+.about_button span {
+  position: relative;
+  display: inline-block;
+}
+.about_button span {
+  padding: .65em 4em;
+  background: -webkit-linear-gradient(#fe5f5f , #ff3f7f);
+  background: linear-gradient(#fe5f5f , #ff3f7f);
+  border: 1px solid #fe3276;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  -webkit-animation: 3s float ease-in-out infinite;
+  animation: 3s float ease-in-out infinite;
+}
+.about_button::after {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  z-index: -1;
+  content: '';
+  width: 100%;
+  height: 24px;
+  background-color: rgba(0,0,0,.1);
+  border-radius: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-animation: 3s shadow ease-in-out infinite;
+  animation: 3s shadow ease-in-out infinite;
+}
+@-webkit-keyframes float {
+  50% {
+    -webkit-transform: translateY(-10px);
+  }
+}
+@keyframes float {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@-webkit-keyframes shadow {
+  50% {
+    width: 70%;
+    height: 18px;
+  }
+}
+@keyframes shadow {
+  50% {
+    width: 70%;
+    height: 18px;
+  }
 }
 // lineup
-#lineup{
-  background-color: #fff;
-}
 .lineup-row {
   margin-top: 50px;
 }
@@ -172,12 +240,186 @@ a.btn-radius-solid:hover {
   background: -webkit-linear-gradient(bottom, #f1e767 0%, #feb645 100%);
   background: linear-gradient(to top, #f1e767 0%, #feb645 100%);
 }
+// koko
+.top_button,
+.top_button span {
+  position: relative;
+  display: inline-block;
+}
+.top_button span {
+  padding: .65em 4em;
+  background: -webkit-linear-gradient(#fe5f95 , #ff3f7f);
+  background: linear-gradient(#fe5f95 , #ff3f7f);
+  border: 1px solid #fe3276;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  -webkit-animation: 3s float ease-in-out infinite;
+  animation: 3s float ease-in-out infinite;
+}
+.top_button::after {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  z-index: -1;
+  content: '';
+  width: 100%;
+  height: 24px;
+  background-color: rgba(0,0,0,.1);
+  border-radius: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-animation: 3s shadow ease-in-out infinite;
+  animation: 3s shadow ease-in-out infinite;
+}
+@-webkit-keyframes float {
+  50% {
+    -webkit-transform: translateY(-10px);
+  }
+}
+@keyframes float {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@-webkit-keyframes shadow {
+  50% {
+    width: 70%;
+    height: 18px;
+  }
+}
+@keyframes shadow {
+  50% {
+    width: 70%;
+    height: 18px;
+  }
+}
 
 // ===circle===
 // cirle index
 .zoom:hover {
   transform:scale(1.1,1.1);
   transition: 2s all;
+}
+// circle show
+// タグ
+.circle_tag {
+	list-style: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	top: auto;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+					transform: translate(-50%,-50%);
+}
+.circle_tag li {
+	display: inline-block;
+}
+.circle_tag a {
+	line-height: 26px;
+	position: relative;
+	display: inline-block;
+	height: 26px;
+	margin: 0 10px 10px 0;
+	padding: 0 20px 0 23px;
+	-webkit-transition: color 0.2s;
+	        transition: color 0.2s;
+	text-decoration: none;
+	color: #455a64;
+	border-radius: 3px 0 0 3px;
+	background: #cfd8dc;
+}
+.circle_tag a::before{
+	background: #fafcfc;/*背景色*/
+}
+.circle_tag a::before {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 6px;
+	height: 6px;
+	content: '';
+	border-radius: 10px;
+}
+.circle_tag a::after {
+	position: absolute;
+	top: -2px;
+	right: -6px;
+	width: 0;
+	height: 0;
+	content: '';
+	border-width: 15px 0 15px 8px;
+	border-style: solid;
+	border-color: transparent transparent transparent #cfd8dc;
+	border-radius: 4px;
+}
+.circle_tag a:hover {
+	color: #ffffff;
+	background-color: #ec407a;
+}
+.circle_tag a:hover::after {
+	border-left-color: #ec407a;;
+}
+.list_tag {
+	list-style: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+					transform: translate(-50%,-50%);
+}
+.list_tag li {
+	display: inline-block;
+}
+.list_tag a {
+	line-height: 26px;
+	position: relative;
+	display: inline-block;
+	height: 26px;
+	margin: 0 10px 10px 0;
+	padding: 0 20px 0 23px;
+	-webkit-transition: color 0.2s;
+	        transition: color 0.2s;
+	text-decoration: none;
+	color: #455a64;
+	border-radius: 3px 0 0 3px;
+	background: #cfd8dc;
+}
+.list_tag a::before{
+	background: #fafcfc;/*背景色*/
+}
+.list_tag a::before {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 6px;
+	height: 6px;
+	content: '';
+	border-radius: 10px;
+}
+.list_tag a::after {
+	position: absolute;
+	top: -2px;
+	right: -6px;
+	width: 0;
+	height: 0;
+	content: '';
+	border-width: 15px 0 15px 8px;
+	border-style: solid;
+	border-color: transparent transparent transparent #cfd8dc;
+	border-radius: 4px;
+}
+.list_tag a:hover {
+	color: #ffffff;
+	background-color: #ec407a;
+}
+.list_tag a:hover::after {
+	border-left-color: #ec407a;;
 }
 // circle show
 // いいね
@@ -264,21 +506,19 @@ a.btn-radius-solid:hover {
   border-bottom: none;
   text-decoration: none;
 }
-// circle confirm
-.confirm_t{
+
+// circle new&edit
+.circle_t{
   width: 100%;
   border-collapse: collapse;
 }
-
-.confirm_t .confirm_tr{
-  border-bottom: solid 2px white;
+.circle_t .circle_tr{
+  border-bottom: solid 2px #f5f5f5;
 }
-
-.confirm_t .confirm_tr:last-child{
+.circle_t .circle_tr:last-child{
   border-bottom: none;
 }
-
-.confirm_t .confirm_th{
+.circle_t .circle_th{
   position: relative;
   text-align: left;
   width: 30%;
@@ -287,8 +527,7 @@ a.btn-radius-solid:hover {
   text-align: center;
   padding: 10px 0;
 }
-
-.confirm_t .confirm_th:after{
+.circle_t .circle_th:after{
   display: block;
   content: "";
   width: 0px;
@@ -300,17 +539,33 @@ a.btn-radius-solid:hover {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
-
-.confirm_t .confirm_td{
+.circle_t .circle_td{
   text-align: left;
   width: 70%;
   text-align: center;
   background-color: #eee;
   padding: 10px 0;
+  background: #fff;
+}
+.circle_form_font{
+  width: 90%;
+  background: #f5f5f5;
+  border: 0;
+  padding: 5px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  border: 1px solid #eee;
+}
+// 写真投稿
+.img_prev:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(1.05, 1.05);
 }
 // ===ユーザーとリーダーのログイン画面===
 // login
-.login_form{
+// ＊サークル投稿、編集も兼用
+.login_form,.circle_form{
   background: #fff;
   border-radius: 6px;
   padding: 20px;
@@ -381,6 +636,71 @@ a.btn-radius-solid:hover {
   background: #fa631d;
 }
 // マイページ関連
+// 自己紹介
+.info_box{
+  position: relative;
+  padding: 0.25em 1em;
+  background: #fff;
+}
+.info_box:before, .info_box:after{
+  content:'';
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+}
+.info_box:before {
+  border-left: solid 1px #5767bf;
+  border-top: solid 1px #5767bf;
+  top: 0;
+  left: 0;
+}
+.info_box:after {
+  border-right: solid 1px #5767bf;
+  border-bottom: solid 1px #5767bf;
+  bottom: 0;
+  right: 0;
+}
+.info_box p {
+  margin: 25px;
+  padding: 0;
+}
+.btn-social-square {
+  display: inline-block;
+  text-decoration: none;
+  width: 50px;
+  margin:2px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 23px;
+  color:white;
+  border-radius: 12px;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  transition: .3s;
+}
+.btn-social-square i {
+  line-height:50px;
+}
+.btn-social-square:hover {
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  color: white;
+}
+.btn-social-square--edit {
+  background: #6680d8;
+}
+.btn-social-square--alart {
+  background: #49a8fb;
+}
+.n-circle{
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #efa04c;
+}
+// 退会
 .taikai,.log_url {
   text-align:center;
   padding:20px;
@@ -415,4 +735,71 @@ a.btn-radius-solid:hover {
   height: 7px;
   background: repeating-linear-gradient(-45deg, #3640ff, #3640ff 2px, white 2px, white 4px);
 }
+.hidden_box{
+  margin: 40px;
+  padding: 0;
+}
+.user_show{
+  margin: 40px;
+}
+.user_title{
+  position: relative;
+  padding: 0.25em 0;
+}
+.user_title:after{
+  content: "";
+  display: block;
+  height: 4px;
+  background: -webkit-linear-gradient(to right, rgb(230, 90,90), transparent);
+  background: linear-gradient(to right, rgb(230, 90,90), transparent);
+}
+.btn_flat_horizontal_border{
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background: #ff7f7f;
+  transition: 4s;
+}
+.btn_flat_horizontal_border > span{
+  border-bottom: solid 2px #fff;
+  border-top: solid 2px #fff;
+}
+.btn_flat_horizontal_border:hover span{
+  padding: 0.1em 0;
+  text-decoration: none;
+}
+#calendar{
+  background: #fff;
+}
+// カレンダー
+.simple-calendar {
+  .day {}
 
+  .wday-0 {color: red}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {color: blue}
+
+  .today {background: #feffe6;}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {opacity: 0.3;}
+  .next-month {opacity: 0.3;}
+  .current-month {background: #fff;}
+  .calendar-heading{
+    font-size: 20px;
+  }
+
+  .has-events {
+    border: 2px solid #f2a5c8;
+  }
+}
