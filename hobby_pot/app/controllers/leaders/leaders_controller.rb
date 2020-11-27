@@ -1,11 +1,14 @@
 class Leaders::LeadersController < ApplicationController
-  before_action :authenticate_leader!, only:[:edit, :update, :unsubscribe, :withdraw]
+  before_action :authenticate_leader!
   before_action :if_not_current_leader, only: [:edit, :update, :unsubscribe, :withdraw]
   before_action :set_leader, only: [:update, :unsubscribe, :withdraw]
   def show
     @leader = Leader.find(params[:id])
-    @circles = @leader.circles
-    # @all_circles = @circles.find(Favorite.group(:circle_id).order('count(circle_id) desc').limit(4).pluck(:circle_id))
+    @circles = @leader.circles.page(params[:page]).per(4)
+    # ランキング
+    rank_circles = @leader.circles
+    all_circles = rank_circles.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    @all_circles = Kaminari.paginate_array(all_circles).page(params[:page]).per(4)
   end
 
   def edit

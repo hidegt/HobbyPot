@@ -3,6 +3,7 @@ class Circle < ApplicationRecord
   belongs_to :leader
   #お気に入り
   has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
@@ -32,6 +33,30 @@ class Circle < ApplicationRecord
     new_categories.each do |new_name|
       circle_category = Category.find_or_create_by(category_name:new_name)
       self.categories << circle_category
+    end
+  end
+  # 通知
+  has_many :notifications, dependent: :destroy
+  def create_notification_favorite!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id =? and circle_id =? and action =?", current_user.id, leader_id, id, 'favorite'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        circle_id: id,
+        visited_id: leader_id,
+        action: 'favorite'
+      )
+      notification.save if notification.valid?
+    end
+  end
+  def create_notification_join_circle!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id =? and join_circle_id =? and action =?", current_user.id, leader_id, id, 'join_circle'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        circle_id: id,
+        visited_id: leader_id,
+        action: 'join_circle'
+      )
+      notification.save if notification.valid?
     end
   end
 

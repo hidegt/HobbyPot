@@ -1,0 +1,26 @@
+<% visitor = notification.visitor %>
+<% circle = notification.circle %>
+<% visited = notification.visited %>
+<div class="container border-bottom border-muted pt-3">
+  <div class="col-md-6 mx-auto">
+    <div class="form-inline">
+      <span>
+        <%= link_to user_path(visitor), class:"text-decoration-none" do %>
+          <%= attachment_image_tag visitor, :user_image, size: "80x80", class:"border border-secondary rounded-circle", fallback: "no-image-icon.jpg" %>
+      </span>
+          <div class="text-dark">　<%= visitor.name %>さんが</div>
+        <% end %>
+        <% case notification.action %>
+          <% when 'favorite' then %>
+            <%= link_to 'あなたの投稿', circle, style: 'font-weight: bold;' %>
+            <%= "にいいねしました" %>
+          <% when 'join_circle' then %>
+            <%= link_to 'あなたの投稿', circle, style: 'font-weight: bold;' %>
+            <%= "に参加しました" %>
+        <% end %>
+    </div>
+  </div>
+  <div class="small text-muted text-right">
+    <%= time_ago_in_words(notification.created_at).upcase %>
+  </div>
+</div>

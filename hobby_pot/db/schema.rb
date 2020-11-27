@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_145749) do
+ActiveRecord::Schema.define(version: 2020_11_27_044634) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -89,6 +89,21 @@ ActiveRecord::Schema.define(version: 2020_11_26_145749) do
     t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_leaders_on_email", unique: true
     t.index ["reset_password_token"], name: "index_leaders_on_reset_password_token", unique: true
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "circle_id"
+    t.integer "join_circle_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["circle_id"], name: "index_notifications_on_circle_id"
+    t.index ["join_circle_id"], name: "index_notifications_on_join_circle_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "users", force: :cascade do |t|

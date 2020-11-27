@@ -9,6 +9,9 @@
           <%= render 'common/circle_index', circle: circle %>
         </div>
       <% end %>
+      <div class="row  justify-content-center">
+        <%= paginate @circles %>
+      </div>
     </div>
     <div class="col-3">
       <ul class="list_tag">
@@ -20,5 +23,4 @@
       </ul>
     </div>
   </div>
-  
 </div>
