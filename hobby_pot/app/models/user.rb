@@ -22,6 +22,5 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
-  validates :circle_name, presence: true, length: { minimum: 2, maximum: 20 }
-  validates :introduction, presence: true, length: { maximum: 300 }
+  validates :introduction, length: { maximum: 300 }
 end
