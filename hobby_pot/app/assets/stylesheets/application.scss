@@ -57,6 +57,10 @@ header{
   background-repeat: no-repeat;
   position: relative;
 }
+.header_h2{
+  color: #fff;
+  font-size: 36px;
+}
 // ヘッダー部分のボーダーを斜めにする
 .app-li{
   -webkit-transform: skewX(150deg);
