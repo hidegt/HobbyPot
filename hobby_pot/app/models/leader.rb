@@ -13,5 +13,5 @@ class Leader < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :circle_name, presence: true, length: { minimum: 2, maximum: 20 }
-  validates :introduction, presence: true, length: { maximum: 300 }
+  validates :introduction, length: { maximum: 300 }
 end
