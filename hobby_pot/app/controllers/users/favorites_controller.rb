@@ -5,6 +5,7 @@ class Users::FavoritesController < ApplicationController
   def create
     favorite = current_user.favorites.build(circle_id: params[:circle_id])
     favorite.save!
+    @circle.create_notification_favorite!(current_user)
   end
 
   def destroy

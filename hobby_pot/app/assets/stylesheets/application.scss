@@ -26,6 +26,18 @@
 body{
   background-color: #fffddb;
 }
+// ページネーション
+.pagination>li>a{
+  border: none;
+  color: #696969;
+}
+.pagination>.active>a{
+  background: #93c9ff;
+  border-radius: 15px;
+}
+.pagination>li>a:hover{
+  border-radius: 15px;
+}
 // 右端の余白を消すため
 #wrapper {
   width: 100%;
@@ -653,6 +665,41 @@ a.btn-radius-solid:hover {
   margin: 25px;
   padding: 0;
 }
+.btn-social-square {
+  display: inline-block;
+  text-decoration: none;
+  width: 50px;
+  margin:2px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 23px;
+  color:white;
+  border-radius: 12px;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  transition: .3s;
+}
+.btn-social-square i {
+  line-height:50px;
+}
+.btn-social-square:hover {
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  color: white;
+}
+.btn-social-square--edit {
+  background: #6680d8;
+}
+.btn-social-square--alart {
+  background: #49a8fb;
+}
+.n-circle{
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #efa04c;
+}
 // 退会
 .taikai,.log_url {
   text-align:center;
@@ -748,6 +795,9 @@ a.btn-radius-solid:hover {
   .prev-month {opacity: 0.3;}
   .next-month {opacity: 0.3;}
   .current-month {background: #fff;}
+  .calendar-heading{
+    font-size: 20px;
+  }
 
   .has-events {
     border: 2px solid #f2a5c8;

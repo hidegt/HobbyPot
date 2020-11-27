@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row justify-content-center m-3 p-3">
+    <h2 class="top-border">通知</h2>
+  </div>
+  <% if @notifications.exists? %>
+    <div class="">
+      <%= render @notifications %>
+      <%= paginate @notifications %>
+    </div>
+  <% else %>
+    <p>通知はありません</p>
+  <% end %>
+</div>

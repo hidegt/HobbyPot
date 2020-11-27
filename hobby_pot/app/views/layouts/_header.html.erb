@@ -3,12 +3,10 @@
     <h2><%= link_to "Hobby Pot", root_path, class:"navbar-brand pl-4" %></h2>
     <ul class="nav justify-content-end">
       <% if user_signed_in? %>
-        <li class="nav-item">ようこそ　<%= current_user.name %>さん</li>
         <li class="nav-item app-li"><%= link_to "マイページ", user_path(current_user.id), class:"nav-link app-a" %></li>
         <li class="nav-item app-li"><%= link_to "イベント一覧", circles_path, class:"nav-link app-a" %></li>
         <li class="nav-item app-li"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link app-a" %></li>
       <% elsif leader_signed_in? %>
-        <li class="nav-item">ようこそ　<%= current_leader.circle_name %>　　<%= current_leader.name %>さん</li>
         <li class="nav-item app-li"><%= link_to "マイページ", leaders_leader_path(current_leader.id), class:"nav-link app-a" %></li>
         <li class="nav-item app-li"><%= link_to "イベント一覧", circles_path, class:"nav-link app-a" %></li>
         <li class="nav-item app-li"><%= link_to "イベント作成", new_leaders_circle_path, class:"nav-link app-a" %></li>

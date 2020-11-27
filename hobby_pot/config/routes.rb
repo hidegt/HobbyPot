@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         #退会&ステータス変更
         get 'unsubscribe'
         patch 'withdraw'
+        resources :notifications, only: :index
       end
     end
   end

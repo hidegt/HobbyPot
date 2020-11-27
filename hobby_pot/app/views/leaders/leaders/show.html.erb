@@ -1,26 +1,40 @@
 <div class="container">
   <div class="row justify-content-center m-3 p-3">
-      <h1><%= @leader.circle_name %><h1>
+  <% if @user != current_leader %>
+    <h2 class="top-border"><%= @leader.name %>　さんのページ</h2>
+  <% else %>
+    <h2 class="top-border">マイページ<h2>
+  <% end %>
   </div>
   <div class="row mt-5">
-    <div class="col-md-2 align-self-start">
-      <div class="text-center mb-2"><%= attachment_image_tag @leader, :leader_image, size: "200x200",class:"rounded-circle img-fluid border border-dark", fallback: "no-image-icon.jpg" %></div>
+    <div class="col-md-3 align-self-start">
+      <div class="text-center mb-2"><%= attachment_image_tag @leader, :leader_image, size: "200x200",class:"rounded-circle border border-dark", fallback: "no-image-icon.jpg" %></div>
       <h3 class="user_info text-center mb-2"><%= @leader.name %></h3>
     	<div class="info_box mb-3">
     		<p><%= simple_format(h(@leader.introduction)) %></p>
     	</div>
       <% if leader_signed_in? %>
         <% if @leader.id == current_leader.id %>
-      	<div class="row  justify-content-center">
-      	  <%= link_to edit_leaders_leader_path(current_leader.id), class:"btn_flat_horizontal_border" do %>
-      	    <span>プロフィール編集</span>
-      	  <% end %>
-      	</div>
+        	<div class="row justify-content-center">
+        	  <%= link_to edit_leaders_leader_path(current_leader.id), class:"btn-social-square btn-social-square--edit" do %>
+        	    <i class="fas fa-user-edit" style="font-size: 1.5em;"></i>
+        	  <% end %>
+        	  <%= link_to leaders_notifications_path(current_leader.id), class:"btn-social-square btn-social-square--alart" do %>
+        	    <% if unchecked_notifications.any? %>
+        	      <span class="fa-stack">
+        	        <i class="far fa-bell fa-stack-2x" style="font-size: 1.5em;"></i>
+        	        <i class="fas fa-circle n-circle fa-stack-1x"></i>
+        	      </span>
+        	     <% else %>
+        	       <i class="far fa-bell" style="font-size: 1.5em;"></i>
+        	    <% end %>
+        	  <% end %>
+        	</div>
         <% end %>
       <% end %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h3 class="text-center user_title">イベントスケジュール</h3>
+      <h3 class="text-center user_title"><%= @leader.circle_name %>　イベントスケジュール</h3>
       <div id="calendar">
         <%= month_calendar events: @circles do |date, circle| %>
           <%= date.day %>
@@ -31,17 +45,21 @@
           <% end %>
         <% end %>
       </div>
-      <!--<div class="user_show">-->
-      <!--  <h4 class="text-center hidden_box user_title">ランキング</h4>-->
-      <!--  <div class="hidden_show">-->
-      <!--    % @all_circles.each.with_index(1) do |all_circle, i| %>-->
-      <!--      <div class="row row_zoom">-->
-      <!--        <p class=col-12>第%= i %>位</p><br>-->
-      <!--        %= render 'common/circle_top', circle: all_circle %>-->
-      <!--      </div>-->
-      <!--    % end %>-->
-      <!--  </div>-->
-      <!--</div>-->
+    </div>
+    <div class="user_show">
+      <h4 class="text-center hidden_box user_title">ランキング</h4>
+      <div class="hidden_show">
+        <div class="row row_zoom">
+          <% @all_circles.each.with_index(1) do |all_circle, i| %>
+            <div class="col-sm-3">
+              <p class="mb-0 text-center">第<%= i %>位　　
+                <i class="fas fa-heart" style="color: red;"></i> <%= all_circle.favorites.count %>
+              </p><br>
+              <%= render 'common/circle_top', circle: all_circle %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
