@@ -7,7 +7,7 @@
     <% end %>
   </div>
   <div class="row mt-5">
-    <div class="col-md-2 align-self-start">
+    <div class="col-md-3 align-self-start">
       <div class="text-center mb-2"><%= attachment_image_tag @user, :user_image, size: "200x200",class:"rounded-circle border border-dark", fallback: "no-image-icon.jpg" %></div>
       <h3 class="user_info text-center mb-2"><%= @user.name %></h3>
     	<div class="info_box mb-3">
@@ -21,10 +21,10 @@
       	</div>
       <% end %>
     </div>
-    <div class="col-md-8 offset-md-1">
+    <div class="col-md-9">
       <h3 class="text-center user_title">イベントスケジュール</h3>
       <div id="calendar">
-        <%= month_calendar events: @user.j_circles do |date, j_circles| %>
+        <%= month_calendar events: @join_circles do |date, j_circles| %>
           <%= date.day %>
           <% j_circles.each do |j_c| %>
             <div>
@@ -35,19 +35,20 @@
       </div>
       <div class="user_show">
         <h4 class="text-center hidden_box user_title">お気に入り一覧</h4>
-        <% if @user.fav_circles.present? %>
-          <div class="hidden_show">
-            <div class="row row_zoom">
-              <% @user.fav_circles.each do |fav_circle| %>
-                <%= render 'common/circle_top', circle: fav_circle %>
-              <% end %>
+      </div>
+    </div>
+    <div class="hidden_show mb-5">
+      <% if @user.fav_circles.present? %>
+        <div class="row row_zoom">
+          <% @bookmarks.each do |bookmark| %>
+            <div class="col-xs-3 mb-3">
+              <%= render 'common/circle_top', circle: bookmark %>
             </div>
-          </div>
-        <% else %>
-          <p>まだお気に入りイベントはありません</p>
-        <% end %>
-      </div>
-      </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>まだお気に入りイベントはありません</p>
+      <% end %>
     </div>
   </div>
 </div>
