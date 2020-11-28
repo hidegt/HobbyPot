@@ -1,6 +1,6 @@
 <header>
   <nav id="navbar-example2" class="navbar navbar-light">
-    <h2 class="header_h2"><%= link_to "Hobby Pot", root_path, class:"navbar-brand pl-4" %></h2>
+    <h2 class="header_h2"><%= link_to "Hobby Pot", root_path, class:"navbar-brand pl-4 header_li" %></h2>
     <ul class="nav justify-content-end">
       <% if user_signed_in? %>
         <li class="nav-item app-li"><%= link_to "マイページ", user_path(current_user.id), class:"nav-link app-a" %></li>
