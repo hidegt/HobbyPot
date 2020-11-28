@@ -38,7 +38,7 @@ https://docs.google.com/spreadsheets/d/11KnK8Hbwd_aqQEeqacBFn9oai-v32g2KdkwsdLDy
 - 仮想環境：AWS, Cloud9
 
 ## 使用素材
-イラスト・画像
+#イラスト・画像
 -ぱくたそ
 https://www.pakutaso.com/
 -O-DAN
@@ -50,6 +50,6 @@ https://chojugiga.com/
 -ガーリー素材
 https://girlysozai.com/
 
-フォント
+#フォント
 Google Fonts
 https://fonts.google.com/
