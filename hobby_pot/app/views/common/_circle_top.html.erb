@@ -2,7 +2,7 @@
   <%= attachment_image_tag circle, :image, size: "200x200", class:"card-img-top" %>
   <div class="card-body">
     <h5 class="card-title border-bottom"><%= circle.circle_title %></h5>
-    <p class="card-text"><%= circle.circle_about %></p>
+    <p class="card-text"><%= circle.circle_about.truncate(25, omission: '...') %></p>
   </div>
 
   <div  class="card-body">
@@ -10,7 +10,7 @@
   </div>
   <div class="card-footer bg-transparent">by
     <%= link_to leaders_leader_path(circle.leader.id), class:"text-decoration-none" do %>
-      <%= attachment_image_tag circle.leader, :leader_image, size: "50x50", class:"rounded-circle img-fluid border border-dark", fallback: "no-image-icon.jpg" %>
+      <%= attachment_image_tag circle.leader, :leader_image, size: "50x50", class:"rounded-circle border border-dark", fallback: "no-image-icon.jpg" %>
       <span class="text-dark"><%= circle.leader.name %></span>
     <% end %>
   </div>

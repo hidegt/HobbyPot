@@ -16,6 +16,16 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=M+PLUS+Rounded+1c:wght@300&family=Nanum+Gothic:wght@800&display=swap');
+#main_p{
+  font-family: 'M PLUS Rounded 1c', sans-serif;}
+.header_h2{
+  font-family: 'Lobster', cursive;
+}
+.header_li{
+  font-size: 36px;
+}
 // ===全体===
 * {
   margin: 0;
@@ -56,10 +66,6 @@ header{
   display: inline-block;
   background-repeat: no-repeat;
   position: relative;
-}
-.header_h2{
-  color: #fff;
-  font-size: 40px;
 }
 // ヘッダー部分のボーダーを斜めにする
 .app-li{
@@ -373,7 +379,8 @@ a.btn-radius-solid:hover {
 	overflow: hidden;
 	padding: 0;
 	position: absolute;
-	left: 50%;
+	left: 45%;
+	top: 5%;
 	-webkit-transform: translate(-50%,-50%);
 					transform: translate(-50%,-50%);
 }

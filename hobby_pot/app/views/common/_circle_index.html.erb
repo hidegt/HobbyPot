@@ -1,5 +1,5 @@
 <div class="card my-3 mx-auto zoom" style="max-width: 800px;">
-  <h5 class="card-header"><%= circle.circle_title %></h5>
+  <h5 class="card-header"><i class="fas fa-pepper-hot"></i>　<%= circle.circle_title %></h5>
   <div class="card-body">
     <div class="row no-gutters">
       <div class="col-md-4">
@@ -8,7 +8,7 @@
       <div class="col-md-8">
         <p class="card-text offset-md-1">
           <i class="fas fa-pencil-alt"></i>
-          <%= safe_join(circle.circle_about.split("\n"),tag(:br)) %>
+          <%= circle.circle_about.truncate(20, omission: '...') %>
         </p>
         <p class="card-text offset-md-1">
           <i class="fas fa-bus-alt"></i> 場所:
