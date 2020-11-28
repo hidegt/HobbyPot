@@ -29,7 +29,6 @@
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/11KnK8Hbwd_aqQEeqacBFn9oai-v32g2KdkwsdLDyUVA/edit?usp=sharing
-https://docs.google.com/spreadsheets/d/1EA3GJA2O3aLCzDLYPVQofrJvpZJSgOAkCRHs7KrdJ7A/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -39,17 +38,18 @@ https://docs.google.com/spreadsheets/d/1EA3GJA2O3aLCzDLYPVQofrJvpZJSgOAkCRHs7Krd
 - 仮想環境：AWS, Cloud9
 
 ## 使用素材
-＊現在使用予定。増える場合もあれば使わない場合もあります。（今後変更の可能性大）
 イラスト・画像
-・ぱくたそ
+-ぱくたそ
 https://www.pakutaso.com/
-・O-DAN
+-O-DAN
 https://o-dan.net/ja/
-・GIRLY DROP
-https://girlydrop.com/
-・pro.foto
-https://pro-foto.jp/free/products_list.php/cPath/21_32_104
+-いらすとん
+http://www.irasuton.com/
+-ダ鳥獣ギ画
+https://chojugiga.com/
+-ガーリー素材
+https://girlysozai.com/
 
 フォント
-・FONT FREE
-https://fontfree.me/# HobbyPot
+Google Fonts
+https://fonts.google.com/
