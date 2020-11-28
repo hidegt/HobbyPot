@@ -38,18 +38,18 @@ https://docs.google.com/spreadsheets/d/11KnK8Hbwd_aqQEeqacBFn9oai-v32g2KdkwsdLDy
 - 仮想環境：AWS, Cloud9
 
 ## 使用素材
-#イラスト・画像
--ぱくたそ
+###イラスト・画像
+- ぱくたそ
 https://www.pakutaso.com/
--O-DAN
+- O-DAN
 https://o-dan.net/ja/
--いらすとん
+- いらすとん
 http://www.irasuton.com/
--ダ鳥獣ギ画
+- ダ鳥獣ギ画
 https://chojugiga.com/
--ガーリー素材
+- ガーリー素材
 https://girlysozai.com/
 
-#フォント
-Google Fonts
+###フォント
+- Google Fonts
 https://fonts.google.com/
