@@ -7,7 +7,7 @@
       <div class="col-3 offset-1 py-2">
         <%= link_to user_path(circle_comment.user.id), class:"text-decoration-none" do %>
           <%= attachment_image_tag circle_comment.user, :user_image, size: "80x80", class:"border border-secondary rounded-circle", fallback: "no-image-icon.jpg" %>
-          <div class="blog text-dark"><%= circle_comment.user.name %></div>
+          <div class="blog col-1 text-dark"><%= circle_comment.user.name %></div>
         <% end %>
       </div>
       <div class="col-4 text-left">
