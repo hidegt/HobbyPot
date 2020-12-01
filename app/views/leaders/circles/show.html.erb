@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row justify-content-center m-3 p-3">
+    <% if @circle.score_category <= 0.3 %>
+      <p>カテゴリーに不適切な内容があるため、非公開設定となります。</p>
+    <% end %>
+  </div>
+
+  <div class="row justify-content-center m-3 p-3">
+    <h1 class="top-border pt-5 mb-0"><%= @circle.circle_title %>の詳細<h1>
+  </div>
+  <div class="row justify-content-center my-3">
+    <p>スコア値が0.3以下の内容は非公開設定となります。</p>
+  </div>
+  <div class="row pt-2">
+    <%= attachment_image_tag @circle, :image, size: "500x500", class:"mx-auto" %>
+  </div>
+  <div class="row justify-content-center p-3 m-3">
+    <div class="col-md-2 border-bottom border-secondary font-weight-bold"> 項目 </div>
+    <div class="col-md-3 border-bottom border-secondary font-weight-bold">内容</div>
+    <div class="col-md-1 border-bottom border-secondary font-weight-bold">スコア</div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-pencil-alt"></i> タイトル: </div>
+    <div class="col-md-3 border-bottom border-secondary"><%= @circle.circle_title %></div>
+    <div class="col-md-1 border-bottom border-secondary">[<%= @circle.score_title %>]</div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-sun"></i> 開催日: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= @circle.start_time.strftime('%Y/%m/%d %H:%M') %></div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-bus-alt"></i> 場所: </div>
+    <div class="col-md-4 border-bottom border-secondary">
+      <%= @circle.prefecture_code%><%= @circle.address_city %><%= @circle.address_street %><%= @circle.address_building %>
+    </div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-pencil-alt"></i> イベント内容: </div>
+    <div class="col-md-3 border-bottom border-secondary"><%= safe_join(@circle.circle_about.split("\n"),tag(:br)) %></div>
+    <div class="col-md-1 border-bottom border-secondary">[<%= @circle.score_about %>]</div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-clock"></i> 当日の流れ: </div>
+    <div class="col-md-3 border-bottom border-secondary"><%= safe_join(@circle.schedule.split("\n"),tag(:br)) %></div>
+    <div class="col-md-1 border-bottom border-secondary">[<%= @circle.score_schedule %>]</div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-comments-dollar"></i> 参加費: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= number_with_delimiter(@circle.join_cost) + "円" %></div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-users"></i>　募集人数: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= @circle.number_people + "人" %></div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-shopping-bag"></i> 用意するもの: </div>
+    <div class="col-md-3 border-bottom border-secondary"><%= safe_join(@circle.prepare.split("\n"),tag(:br)) %></div>
+    <div class="col-md-1 border-bottom border-secondary">[<%= @circle.score_prepare %>]</div>
+  </div>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-unlock-alt"></i> 公開設定: </div>
+    <div class="col-md-4 border-bottom border-secondary"><%= @circle.status %></div>
+  </div>
+  <div class="row justify-content-center my-5">
+    <% if @circle.leader == current_leader %>
+      <%= link_to "編集する", edit_leaders_circle_path(@circle), class:"btn btn-warning text-center" %>
+    <% end %>
+  </div>
+</div>
