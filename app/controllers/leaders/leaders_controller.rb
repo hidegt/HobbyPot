@@ -4,7 +4,7 @@ class Leaders::LeadersController < ApplicationController
   before_action :set_leader, only: [:update, :unsubscribe, :withdraw]
   def show
     @leader = Leader.find(params[:id])
-    @circles = @leader.circles.page(params[:page]).per(4)
+    @circles = @leader.circles
     # ランキング
     rank_circles = @leader.circles
     all_circles = rank_circles.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}

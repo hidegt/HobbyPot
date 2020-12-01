@@ -4,14 +4,13 @@
       <%= render 'users/favorites/favorite', circle: @circle %>
     </div>
   </div>
-  <%= render 'common/circle_show', circle: @circle %>
+  <%= render 'common/circle_show', circle: @circle, circle_categories: @circle_categories %>
   <!--コメント-->
   <% if user_signed_in? %>
     <%= render 'users/circle_comments/comment_form', circle: @circle, comment: @comment %>
     <div class="allcomments">
       <%= render 'users/circle_comments/comment_all', circle: @circle, comment: @comment %>
     </div>
-  <% elsif leader_signed_in? %>
     <div class="allcomments">
       <%= render 'users/circle_comments/comment_all', circle: @circle, comment: @comment %>
     </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_044634) do
+ActiveRecord::Schema.define(version: 2020_12_01_090229) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(version: 2020_11_27_044634) do
     t.string "address_city"
     t.string "address_street"
     t.string "address_building"
+    t.decimal "score_title", precision: 5, scale: 3
+    t.decimal "score_about", precision: 5, scale: 3
+    t.decimal "score_schedule", precision: 5, scale: 3
+    t.decimal "score_prepare", precision: 5, scale: 3
+    t.decimal "score_category", precision: 5, scale: 3
   end
 
   create_table "favorites", force: :cascade do |t|

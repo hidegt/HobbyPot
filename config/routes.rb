@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #リーダー側ルート
   namespace :leaders do
     #サークル
-    resources :circles, only:[:new, :create, :edit, :update] do
+    resources :circles, only:[:new, :create, :show, :edit, :update] do
     end
     #マイページ
     resources :leaders, only:[:show, :edit, :update] do
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       resource :join_circles, only: [:index, :create, :destroy]
       resources :circle_comments, only:[:create, :destroy]
     end
-      
+
     #マイページ
     resources :users, only:[:show, :edit, :update] do
       member do
