@@ -40,7 +40,7 @@
           <%= date.day %>
           <% circle.each do |c| %>
             <div><i class="fas fa-pepper-hot"></i>
-              <%= link_to c.circle_title, c, class:"text-dark" %>
+              <%= link_to c.circle_title, leaders_circle_path(c), class:"text-dark" %>
             </div>
           <% end %>
         <% end %>

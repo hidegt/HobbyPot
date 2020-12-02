@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_090229) do
     t.decimal "score_about", precision: 5, scale: 3
     t.decimal "score_schedule", precision: 5, scale: 3
     t.decimal "score_prepare", precision: 5, scale: 3
-    t.decimal "score_category", precision: 5, scale: 3
   end
 
   create_table "favorites", force: :cascade do |t|

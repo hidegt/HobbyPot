@@ -1,10 +1,11 @@
 <div class="container">
-  <div class="row justify-content-center m-3 p-3">
-    <% if @circle.score_category <= 0.3 %>
-      <p>カテゴリーに不適切な内容があるため、非公開設定となります。</p>
-    <% end %>
+  <div class="row justify-content-center m-3 pt-3">
+    <ul class="circle_tag">
+      <% @circle_categories.each do |category| %>
+        <li><%= link_to category.category_name, circles_path(category_id: category.id) %> </li>
+      <% end %>
+    </ul>
   </div>
-
   <div class="row justify-content-center m-3 p-3">
     <h1 class="top-border pt-5 mb-0"><%= @circle.circle_title %>の詳細<h1>
   </div>
@@ -26,13 +27,15 @@
   </div>
   <div class="row justify-content-center my-3">
     <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-sun"></i> 開催日: </div>
-    <div class="col-md-4 border-bottom border-secondary"><%= @circle.start_time.strftime('%Y/%m/%d %H:%M') %></div>
+    <div class="col-md-3 border-bottom border-secondary"><%= @circle.start_time.strftime('%Y/%m/%d %H:%M') %></div>
+    <div class="col-md-1 border-bottom border-secondary">[ -- ]</div>
   </div>
   <div class="row justify-content-center my-3">
     <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-bus-alt"></i> 場所: </div>
-    <div class="col-md-4 border-bottom border-secondary">
+    <div class="col-md-3 border-bottom border-secondary">
       <%= @circle.prefecture_code%><%= @circle.address_city %><%= @circle.address_street %><%= @circle.address_building %>
     </div>
+    <div class="col-md-1 border-bottom border-secondary">[ -- ]</div>
   </div>
   <div class="row justify-content-center my-3">
     <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-pencil-alt"></i> イベント内容: </div>
@@ -46,11 +49,13 @@
   </div>
   <div class="row justify-content-center my-3">
     <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-comments-dollar"></i> 参加費: </div>
-    <div class="col-md-4 border-bottom border-secondary"><%= number_with_delimiter(@circle.join_cost) + "円" %></div>
+    <div class="col-md-3 border-bottom border-secondary"><%= number_with_delimiter(@circle.join_cost) + "円" %></div>
+    <div class="col-md-1 border-bottom border-secondary">[ -- ]</div>
   </div>
   <div class="row justify-content-center my-3">
     <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-users"></i>　募集人数: </div>
-    <div class="col-md-4 border-bottom border-secondary"><%= @circle.number_people + "人" %></div>
+    <div class="col-md-3 border-bottom border-secondary"><%= @circle.number_people + "人" %></div>
+    <div class="col-md-1 border-bottom border-secondary">[ -- ]</div>
   </div>
   <div class="row justify-content-center my-3">
     <div class="col-md-2 border-bottom border-secondary"><i class="fas fa-shopping-bag"></i> 用意するもの: </div>
