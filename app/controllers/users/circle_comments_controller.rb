@@ -4,7 +4,13 @@ class Users::CircleCommentsController < ApplicationController
   def create
     @comment = current_user.circle_comments.new(circle_comment_params)
     @comment.circle_id = @circle.id
-    @comment.save
+    @comment.score_comment = Language.get_data(circle_comment_params[:comment])
+    if @comment.score_comment <= 0.3
+      flash[:notice] = "不適切な言葉があるためコメントできません"
+      redirect_to request.referer
+    else
+      @comment.save
+    end
   end
 
   def destroy
