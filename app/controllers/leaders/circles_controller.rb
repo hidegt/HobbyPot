@@ -14,8 +14,7 @@ class Leaders::CirclesController < ApplicationController
     @circle.score_about = Language.get_data(circle_params[:circle_about])
     @circle.score_schedule = Language.get_data(circle_params[:schedule])
     @circle.score_prepare = Language.get_data(circle_params[:prepare])
-    @circle.score_category = Language.get_data(params[:circle][:category_name])
-    if @circle.score_title <= 0.3 || @circle.score_about <= 0.3 || @circle.score_schedule <= 0.3 || @circle.score_prepare <= 0.3 || @circle.score_category <= 0.3
+    if @circle.score_title <= 0.3 || @circle.score_about <= 0.3 || @circle.score_schedule <= 0.3 || @circle.score_prepare <= 0.3
       @circle.save
       @circle.update(circle_status: false)
       flash[:notice] = "不適切な言葉があるため非公開設定にしました"
@@ -50,8 +49,7 @@ class Leaders::CirclesController < ApplicationController
     @circle.score_about = Language.get_data(circle_params[:circle_about])
     @circle.score_schedule = Language.get_data(circle_params[:schedule])
     @circle.score_prepare = Language.get_data(circle_params[:prepare])
-    @circle.score_category = Language.get_data(params[:circle][:category_name])
-    if @circle.score_title <= 0.3 || @circle.score_about <= 0.3 || @circle.score_schedule <= 0.3 || @circle.score_prepare <= 0.3
+    if @circle.score_title <= 0.3 || @circle.score_about <= 0.3 || @circle.score_schedule <= 0.3
       @circle.update(circle_params)
       @circle.update(circle_status: false)
       flash[:notice] = "不適切な言葉があるため非公開設定にしました"
@@ -66,7 +64,7 @@ class Leaders::CirclesController < ApplicationController
 
   private
   def circle_params
-    params.require(:circle).permit(:circle_title,:image, :circle_about,:start_time,:schedule,:prepare,:join_cost, :number_people, :circle_status, :postcode,:prefecture_code,:address_city,:address_street,:address_building,:score_title,:score_about,:score_schedule,:score_prepare,:score)
+    params.require(:circle).permit(:circle_title,:image, :circle_about,:start_time,:schedule,:prepare,:join_cost, :number_people, :circle_status, :postcode,:prefecture_code,:address_city,:address_street,:address_building,:score_title,:score_about,:score_schedule,:score_prepare)
   end
 
   def if_not_leader
